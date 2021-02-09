@@ -44,4 +44,3 @@ jobs:
         force_orphan: true
         publish_dir: ./public
         publish_branch: master
-        cname: linyj.nctu.me
