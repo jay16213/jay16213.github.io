@@ -1,10 +1,10 @@
 # section information
 section:
-  name: Experiences
+  name: 經歷
   id: experiences
-  enable: true
+  enable: false
   weight: 3
-  showOnNavbar: true
+  showOnNavbar: false
   # Can optionally hide the title in sections
   # hideTitle: true
 
@@ -27,16 +27,16 @@ experiences:
     - Design, develop and manage disaster recovery tool [Xtool](https://www.example.com) that backup Kubernetes volumes, databases, and cluster's resource definition.
     - Lead backend team.
 
-- company:
-    name: PreExample Co.
-    url: "https://www.preexample.com"
-    location: Nowhere
-    overview: PreExample Co. is a gateway company to enter into Example co. So, nothing special here.
-  positions:
-  - designation: Software Engineer
-    start: March 2016
-    end: May 2017
-    responsibilities:
-    - Write lots of example codes.
-    - Read lots of examples.
-    - See lots of example videos.
+# - company:
+#     name: PreExample Co.
+#     url: "https://www.preexample.com"
+#     location: Nowhere
+#     overview: PreExample Co. is a gateway company to enter into Example co. So, nothing special here.
+#   positions:
+#   - designation: Software Engineer
+#     start: March 2016
+#     end: May 2017
+#     responsibilities:
+#     - Write lots of example codes.
+#     - Read lots of examples.
+#     - See lots of example videos.

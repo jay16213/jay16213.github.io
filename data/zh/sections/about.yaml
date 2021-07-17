@@ -1,0 +1,45 @@
+# section information
+section:
+  name: 關於
+  id: about
+  enable: true
+  weight: 1
+  showOnNavbar: true
+  template: sections/about.html
+
+# your designation
+designation: 工程師
+# your company information
+# company:
+#   name: Example Co.
+#   url: "https://www.example.com"
+
+# your resume. this file path should be relative to you "static" directory
+# resume: "files/resume.pdf"
+
+# a summary about you
+summary: '大學畢業於國立交通大學資訊工程學系，目前就讀於國立交通大學網路工程研究所碩士班，在陳志成教授之無線網路實驗室擔任研究生。主要工作為 5G 核心網路開發，為 free5GC 開發團隊的一員，主要負責開發 AMF (Access and Mobility Management Function)；熟悉 3GPP R15 中與移動管理功能相關之標準文件，了解 NGAP, NAS 等協定及 R15 之 SBA 架構。'
+
+# your social links
+# give as many as you want. use font-awesome for the icons.
+socialLinks:
+- name: Github
+  icon: "fab fa-github"
+  url: "https://www.github.com/example"
+- name: Email
+  icon: "fas fa-envelope"
+  url: "jay101630@gmail.com"
+- name: LinkedIn
+  icon: "fab fa-linkedin"
+  url: "https://www.linkedin.com/in/yan-jie-lin-3a61251b4"
+
+# your soft skills
+# give the percentage between 50 to 100 with 5 intervals.
+# currently supported colors: blue, yellow, pink, green, sky, orange
+softSkills:
+- name: 領導力
+  percentage: 70
+  color: blue
+- name: 團隊合作
+  percentage: 90
+  color: yellow

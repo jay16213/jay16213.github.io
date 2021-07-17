@@ -1,0 +1,25 @@
+# section information
+section:
+  name: 技能
+  id: skills
+  enable: true
+  weight: 2
+  showOnNavbar: true
+  # Can optionally hide the title in sections
+  # hideTitle: true
+
+# Your Skills.
+# Give a summary of you each skill in the summary section.
+skills:
+- name: 5G Core network
+  # logo: "/images/sections/skills/kubernetes.png"
+  summary: " familiar with 5G mobility management, including N1 (NAS), N2 (NGAP), and SBI(N8, N12, N11, N14, N15) interface."
+
+- name: Git
+  # logo: "/images/sections/skills/go.png"
+  summary: "Familiar with how to collaborate with others through Git."
+
+- name: Programming
+  # logo: "/images/sections/skills/go.png"
+  summary: "C/C++, GO, Javascript"
+  # url: "https://golang.org/"

@@ -1,7 +1,7 @@
 # section information
 section:
-  name: Recent Posts
+  name: 最近文章
   id: recent-posts
   enable: true
-  weight: 5
+  weight: 6
   showOnNavbar: true
