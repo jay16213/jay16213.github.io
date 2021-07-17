@@ -12,20 +12,12 @@ lastmod: 2020-06-28T01:43:32+08:00
 featured: false
 draft: false
 
-# Featured image
-# To use, add an image named `featured.jpg/png` to your page's folder.
-# Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
-image:
-  caption: ""
-  focal_point: ""
-  preview_only: false
-
-# Projects (optional).
-#   Associate this post with one or more of your projects.
-#   Simply enter your project's folder or file name without extension.
-#   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
-#   Otherwise, set `projects = []`.
-projects: []
+# toha params
+menu:
+  sidebar:
+    name: Git Stash Pop Conflict 解決方式
+    identifier: git-stash-pop-conflict
+    weight: 500
 ---
 
 相信有在使用 Git 的各位一定或多或少聽過 Git 的一項好用功能 \- **stash**，中文又稱**儲藏**，主要是在手邊有臨時工作時用來暫存檔案用的，詳細使用情境可以點[這裡](https://git-scm.com/book/zh-tw/v1/Git-%E5%B7%A5%E5%85%B7-%E5%84%B2%E8%97%8F-Stashing) 參考。
