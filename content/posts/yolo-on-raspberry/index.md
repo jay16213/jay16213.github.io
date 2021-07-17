@@ -4,7 +4,6 @@
 title: "Yolo on Raspberry Pi 3"
 subtitle: "在樹梅派上安裝及使用 yolo"
 summary: ""
-authors: []
 tags: ["raspberry-pi-3", "yolo"]
 categories: []
 date: 2018-03-28T00:57:00+08:00
@@ -12,20 +11,12 @@ lastmod: 2020-06-28T01:57:53+08:00
 featured: false
 draft: false
 
-# Featured image
-# To use, add an image named `featured.jpg/png` to your page's folder.
-# Focal points: Smart, Center, TopLeft, Top, TopRight, Left, Right, BottomLeft, Bottom, BottomRight.
-image:
-  caption: ""
-  focal_point: ""
-  preview_only: false
-
-# Projects (optional).
-#   Associate this post with one or more of your projects.
-#   Simply enter your project's folder or file name without extension.
-#   E.g. `projects = ["internal-project"]` references `content/project/deep-learning/index.md`.
-#   Otherwise, set `projects = []`.
-projects: []
+# toha params
+menu:
+  sidebar:
+    name: Yolo on Raspberry Pi 3
+    identifier: yolo-on-raspberry-pi-3
+    weight: 500
 ---
 
 ### 簡介
