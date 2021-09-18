@@ -15,6 +15,8 @@ menu:
     weight: 500
 ---
 
+題目難度：<kbd>Easy</kbd>
+
 ## 題目大綱
 給你一個單向的 linked list, 再給你一個數字 `val`, 移除該 linked list 中所有 `Node.val == val` 的 node 並回傳處理完後的 linked list.
 
