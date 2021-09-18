@@ -4,7 +4,7 @@ section:
   template: sections/education.html # Use "sections/education-alt.html for alternate template.
   enable: true
   weight: 5
-  showOnNavbar: true
+  showOnNavbar: false
 
 degrees:
 - name: 網路工程研究所 碩士班
