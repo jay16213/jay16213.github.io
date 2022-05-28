@@ -1,0 +1,61 @@
+baseURL: https://jay16213.github.io/
+
+languageCode: zh-TW
+defaultContentLanguage: zh
+title: "Jay's Blog"
+theme: "toha"
+
+# Manage languages
+# For any more details, you can check the official documentation: https://gohugo.io/content-management/multilingual/
+languages:
+  zh:
+    languageName: "繁體中文"
+    weight: 1
+  # en:
+  #   languageName: "English"
+  #   weight: 2
+
+# Control TOC depth
+markup:
+  tableOfContents:
+    startLevel: 2
+    endLevel: 6
+    ordered: false
+  goldmark:
+    renderer:
+      unsafe: true
+
+# Enable Google Analytics
+googleAnalytics: UA-113884669-1
+
+# Enable Disqus forum
+disqusShortname: jay-blog-1
+
+# Enable global emoji support
+enableEmoji: true
+
+# Site parameters
+params:
+  # Background image of the landing page
+  # background: /images/site/background.jpg
+
+  # The inverted logo will be used in the initial transparent navbar and
+  # the main logo will be used in the non-transparent navbar.
+  logo:
+    main: images/author/avatar.png
+    inverted: images/author/avatar.png
+    favicon: images/author/avatar.png
+
+  # GitHub repo URL of your site
+  # gitRepo: https://github.com/jay16213/jay16213.github.io
+
+  # specify whether you want to write some blog posts or not
+  enableBlogPost: true
+
+  # specify whether you want to show Table of Contents in reading page
+  enableTOC: true
+
+  # Provide newsletter configuration. This feature hasn't been implemented yet.
+  # Currently, you can just hide it from the footer.
+  newsletter:
+    enable: false
