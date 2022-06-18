@@ -10,9 +10,10 @@ draft: false
 # toha params
 menu:
   sidebar:
-    name: LeetCode 隨筆
-    identifier: leetcode
-    weight: 500
+    name: LeetCode 隨筆 - 203
+    identifier: leetcode-203
+    parent: leetcode
+    weight: 10
 ---
 
 題目難度：<kbd>Easy</kbd>
