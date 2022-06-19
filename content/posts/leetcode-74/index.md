@@ -16,7 +16,7 @@ menu:
     weight: 10
 ---
 
-題目難度：<kbd>Easy</kbd><br/>
+題目難度：<kbd>Medium</kbd><br/>
 > 題目連結: [Search a 2D Matrix](https://leetcode.com/problems/search-a-2d-matrix/)
 
 ## 題目大綱
