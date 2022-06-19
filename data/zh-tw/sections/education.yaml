@@ -8,11 +8,11 @@ section:
 
 degrees:
 - name: 網路工程研究所 碩士班
-  icon: fa-microscope
+  icon: fa-graduation-cap
   timeframe: 2019-2021
   institution:
     name: 國立陽明交通大學 (原國立交通大學)
-    url: "#"
+    url: "https://www.nycu.edu.tw/"
   # grade: #(optional)
   #   scale: CGPA
   #   achieved: 3.6
@@ -29,7 +29,7 @@ degrees:
   timeframe: 2015-2019
   institution:
     name: 國立交通大學
-    url: "#"
+    url: "https://www.nycu.edu.tw/"
   # grade: #(optional)
   #   scale: CGPA
   #   achieved: 3.5
@@ -52,7 +52,7 @@ degrees:
   #     outOf: 4
   # publications: #(optional)
   # - title: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  #   url: "#"
+    # url: "#"
   # - title: Fusce eu augue ut odio porttitor pulvinar.
   #   url: "#"
   # extracurricularActivities: #(optional)
