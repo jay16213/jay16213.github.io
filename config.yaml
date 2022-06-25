@@ -49,6 +49,11 @@ params:
   # GitHub repo URL of your site
   # gitRepo: https://github.com/jay16213/jay16213.github.io
 
+  # for enable top navbar divider to seperate posts nav-items from other items
+  features:
+    blog:
+      enable: true
+
   # specify whether you want to write some blog posts or not
   enableBlogPost: true
 
