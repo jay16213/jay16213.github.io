@@ -18,7 +18,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         submodules: true
 
@@ -27,7 +27,7 @@ jobs:
       uses: peaceiris/actions-hugo@v2
       with:
         # The Hugo version to download (if necessary) and use. Example: 0.58.2
-        hugo-version: '0.101.0' # optional, default is latest
+        hugo-version: '0.119.0' # optional, default is latest
         # Download (if necessary) and use Hugo extended version. Example: true
         extended: true # optional, default is false
 
