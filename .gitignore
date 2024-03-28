@@ -4,6 +4,3 @@
 # Hugo
 resources/
 public/
-
-# node modules
-node_modules/
