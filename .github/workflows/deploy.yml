@@ -7,6 +7,7 @@ name: GitHub Pages Deployment
 on:
   push:
     branches: [ develop ]
+  pull_request:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -18,18 +19,26 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         submodules: true
 
     # Hugo setup
     - name: Hugo setup
-      uses: peaceiris/actions-hugo@v2
+      uses: peaceiris/actions-hugo@v3
       with:
         # The Hugo version to download (if necessary) and use. Example: 0.58.2
-        hugo-version: '0.101.0' # optional, default is latest
+        hugo-version: '0.124.1' # optional, default is latest
         # Download (if necessary) and use Hugo extended version. Example: true
         extended: true # optional, default is false
+
+    - uses: actions/cache@v4
+      with:
+        path: /home/runner/.cache/hugo_cache    # <-- with hugo version v0.116.0 and above
+        # path: /tmp/hugo_cache                 # <-- with hugo version < v0.116.0
+        key: ${{ runner.os }}-hugomod-${{ hashFiles('**/go.sum') }}
+        restore-keys: |
+          ${{ runner.os }}-hugomod-
 
     # Build the site
     - name: Build
@@ -38,6 +47,7 @@ jobs:
     # Deploy to master branch
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
+      if: github.ref == 'refs/heads/develop'
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         allow_empty_commit: true
