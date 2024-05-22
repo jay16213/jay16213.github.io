@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Leetcode on Jay's Blog</title><link>https://jay16213.github.io/tags/leetcode/</link><description>Recent content in Leetcode on Jay's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-tw</language><lastBuildDate>Tue, 01 Nov 2022 22:46:23 +0800</lastBuildDate><atom:link href="https://jay16213.github.io/tags/leetcode/index.xml" rel="self" type="application/rss+xml"/><item><title>Leetcode 隨筆 - 62. Unique Paths</title><link>https://jay16213.github.io/posts/leetcode/leetcode-62/</link><pubDate>Tue, 01 Nov 2022 22:46:23 +0800</pubDate><guid>https://jay16213.github.io/posts/leetcode/leetcode-62/</guid><description>題目難度：Medium
+題目連結: Unique Paths
+題目大綱 給你一個 m x n 的矩陣地圖, 請你找出從座標 (0, 0) 走到 (m-1, n-1) 一共有多少種走法。題目有限制每一次只能往下或往右走一步。
+解題思路 解法一 - DP 設計一個 2 維陣列 dp[m][n], 其中 dp[i][j] 對應到座標 (i, j)，代表了從 (0, 0) 走到 (i, j) 一共有多少種走法。
+接著從題目的限制我們可以知道，要走到 (i, j) 的話一定要先走到 (i-1, j) 或是 (i, j-1)，然後再往下或往右走一步來到達 (i, j)。
+也就是說，走到 (i, j) 的走法數，會等於走到 (i-1, j) 的走法數加上走到 (i, j-1) 的走法數
+有了這層關係，我們就可以得出 dp 的公式如下：
+dp[i][j] = dp[i - 1][j] + dp[i][j - 1] 而一開始要初始化 dp[i][0] = 1 (0 &amp;lt;= i &amp;lt;= m) 以及 dp[0][j] = 1 (0 &amp;lt;= j &amp;lt;= n)，代表從起點開始，一路往右或往下都只有一種走法</description></item><item><title>Leetcode 隨筆 - 139. Word Break</title><link>https://jay16213.github.io/posts/leetcode/leetcode-139/</link><pubDate>Sun, 30 Oct 2022 00:35:01 +0800</pubDate><guid>https://jay16213.github.io/posts/leetcode/leetcode-139/</guid><description>題目難度：Medium
+題目連結: Word Break
+題目大綱 給定一個字串 s 和一個字串陣列 wordDict, 請你判斷是否有辦法
+程式碼 解法一 這是我看完 NeetCode 影片的前半段的解題思路後想出來的解法
+class Solution { private: vector&amp;lt;int&amp;gt; word_len; int s_len; vector&amp;lt;int&amp;gt; dp; public: void solve(string&amp;amp; s, int idx, vector&amp;lt;string&amp;gt;&amp;amp; wordDict) { if (idx &amp;gt;= s_len) { dp[s_len] = 1; return; } if (dp[idx] != -1) return; for (int i = 0; i &amp;lt; wordDict.size(); i++) { if (s.compare(idx, word_len[i], wordDict[i]) == 0) { solve(s, idx + word_len[i], wordDict); if (dp[s_len] == 1) return; } } dp[idx] = 0; } bool wordBreak(string s, vector&amp;lt;string&amp;gt;&amp;amp; wordDict) { word_len.</description></item><item><title>Leetcode 隨筆 - 152. Maximum Product Subarray</title><link>https://jay16213.github.io/posts/leetcode/leetcode-152/</link><pubDate>Sat, 29 Oct 2022 14:10:08 +0800</pubDate><guid>https://jay16213.github.io/posts/leetcode/leetcode-152/</guid><description>題目難度：Medium
+題目連結: Maximum Product Subarray
+題目大綱 給你一個整數陣列, 找出擁有最大乘積的子陣列 (contiguous non-empty subarray)
+程式碼 class Solution { public: int maxProduct(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int ans = nums[0]; int max_product = 1; int min_product = 1; int t1, t2; for (int i = 0; i &amp;lt; nums.size(); i++) { t1 = max_product * nums[i]; t2 = min_product * nums[i]; max_product = max(t1, max(t2, nums[i])); min_product = min(t1, min(t2, nums[i])); ans = max(max_product, ans); } return ans; } };</description></item><item><title>Leetcode 隨筆 - 199. Binary Tree Right Side View</title><link>https://jay16213.github.io/posts/leetcode/leetcode-199/</link><pubDate>Mon, 11 Jul 2022 21:48:41 +0800</pubDate><guid>https://jay16213.github.io/posts/leetcode/leetcode-199/</guid><description>題目難度：Medium
+題目連結: Binary Tree Right Side View
+題目大綱 給你一個 binary tree, 請你找出：從右邊看這棵樹，能看到的 node 有哪些。
+解題思路 這題翻譯過後就是，請你找出此 binary tree 的每一層的最右邊的 node，所以我們只需要使用 level order traverse 的方式把 tree 掃過一遍抓出每層最右邊的 node 就行了！
+程式碼 實作採用 C++ STL 的 queue, 遍歷時加上每個 node 的 level 資訊，當每掃到新的 level 時就會把該 node 加進 ans 裡面並更新 level 資訊；再來因為我們需要最右邊的 node, 所以 traverse 順序改成先掃右邊的 subtree 再掃左邊 subtree 的方式比較方便實作。
+/** * Definition for a binary tree node. * struct TreeNode { * int val; * TreeNode *left; * TreeNode *right; * TreeNode() : val(0), left(nullptr), right(nullptr) {} * TreeNode(int x) : val(x), left(nullptr), right(nullptr) {} * TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {} * }; */ class Solution { public: vector&amp;lt;int&amp;gt; rightSideView(TreeNode* root) { queue&amp;lt;pair&amp;lt;TreeNode*, int&amp;gt;&amp;gt; q; pair&amp;lt;TreeNode*, int&amp;gt; node; vector&amp;lt;int&amp;gt; ans; int cur_level = -1; if (root == NULL) return vector&amp;lt;int&amp;gt;(); q.</description></item><item><title>Leetcode 隨筆 - 665. Non-decreasing Array</title><link>https://jay16213.github.io/posts/leetcode/leetcode-665/</link><pubDate>Sat, 25 Jun 2022 13:44:48 +0800</pubDate><guid>https://jay16213.github.io/posts/leetcode/leetcode-665/</guid><description>題目難度：Medium
+題目連結: Non-decreasing Array
+題目大綱 給你一個陣列 nums，請你檢查是否可以在 &amp;ldquo;最多修改一個元素的值&amp;rdquo; 的限制下，把這個陣列變成一個非遞減陣列 (原來就已經是非遞減陣列也可以算通過檢查)
+非遞減定義： nums[i] &amp;lt;= nums[i+1], where 0 &amp;lt;= i &amp;lt;= nums.size()-2
+解題思路 首先需要把陣列從頭開始掃描一遍，遇到 nums[i+1] &amp;lt; nums[i] 時停下來檢查是否可以修改元素值來完成題目要求，如果可以改，那就紀錄本次修改。所以我們可以用一個 counter 來記錄修改次數，而若修改次數大於 1 次就可以提前結束不用再往後檢查了。
+接下來重點就是：要怎麼確認可以修改(改成非遞減)？ 這裡可以分成幾個 case 來討論：
+Case 1. 陣列的開頭 or 結尾發生遞減情況 也就是 nums[0] &amp;gt; nums[1] or nums[nums.size()-1] &amp;gt; nums[nums.size()-2]，這時候一定可以修改，因為只要把陣列頭的值往下修或把陣列尾的值往上調就可以了，所以直接更新 counter (counter++) 即可。
+Case 2. 陣列中間發生遞減情況 這時候發生了 nums[i+1] &amp;lt; nums[i]，為了判斷是否能夠只改一個值就能改成非遞減陣列，我們必須額外再抓出 nums[i-1] &amp;amp; nums[i+2] 這兩個元素來幫助我們判斷。
+首先第一項檢查
+nums[i+2] 是否大於等於 nums[i-1] ?
+因為若這個條件不符合，代表除了 nums[i] 跟 nums[i+1] 之外，在 nums[i+2] 這個位置又讓陣列發生了遞減情況，所以至少要改兩個地方，這樣絕對達不到題目要求，因此我們可以提早結束判斷、回傳失敗結果。</description></item><item><title>LeetCode 隨筆 - 74. Search a 2D Matrix</title><link>https://jay16213.github.io/posts/leetcode/leetcode-74/</link><pubDate>Sat, 18 Jun 2022 23:38:19 +0800</pubDate><guid>https://jay16213.github.io/posts/leetcode/leetcode-74/</guid><description>題目難度：Medium
+題目連結: Search a 2D Matrix
+題目大綱 給你一個 m x n 的整數二維陣列和一個 value target，要你判斷 target 是否在這個陣列中。 題目保證這個二維陣列：
+每個 row 的數字的順序已經由小到大排序過了 每個 row 的第一個數字一定比上一個 row 的最後一個數字還要大 解題思路 由題目可知，將這個二維陣列按照 row 展開成一維陣列後就是一個排序過的 array，所以我們就可以直接用 二分搜 (Binary Search) 來找 target。 需要注意的是傳入的是二維陣列，所以在寫 binary search 的時候需要轉換一維 &amp;amp; 二維之間的坐標系
+一維 &amp;amp; 二維坐標系轉換範例： 假設我們要轉換一維陣列的 index i 到一個 m x n (m rows * n columns) 的二維陣列的 index (row, col)
+row = i / n; col = i % n; 程式碼 binary search 可以使用迴圈或遞迴的方式來實作，以下提供兩種版本供讀者參考</description></item><item><title>LeetCode 隨筆 - 203. Remove Linked List Elements</title><link>https://jay16213.github.io/posts/leetcode/leetcode-203/</link><pubDate>Sun, 19 Sep 2021 01:31:18 +0800</pubDate><guid>https://jay16213.github.io/posts/leetcode/leetcode-203/</guid><description>題目難度：Easy
+題目大綱 給你一個單向的 linked list, 再給你一個數字 val, 移除該 linked list 中所有 Node.val == val 的 node 並回傳處理完後的 linked list.
+解題思路 分兩步驟來解：
+首先檢查 head node 是否符合條件，若 head 符合條件則一直執行 head = head-&amp;gt;next ，不斷地把 head 截掉直到 head 是有效的 (Node.val != val) 接著一個 node 一個 node 去歷遍整個 list, 每個 node 的操作為：看下一個 node (後續以 next node 代稱) 是否符合條件，若符合的話就把自己的 next 指標接到 next node 的 next 指標 (也就是移除該 next node)，並繼續比較新的 next node (也就是回到第 2 步剛開始的操作)，否則繼續往下 loop 剩餘的 node 理論上移除掉的 node 要記得 free 掉不然會 memory leak, 不過這只是練習而已 LeetCode 好像也沒檢查這個，有沒有 free 掉都可以 AC</description></item></channel></rss>

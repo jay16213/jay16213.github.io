@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Dynamic-Programming on Jay's Blog</title><link>https://jay16213.github.io/tags/dynamic-programming/</link><description>Recent content in Dynamic-Programming on Jay's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-tw</language><lastBuildDate>Tue, 01 Nov 2022 22:46:23 +0800</lastBuildDate><atom:link href="https://jay16213.github.io/tags/dynamic-programming/index.xml" rel="self" type="application/rss+xml"/><item><title>Leetcode 隨筆 - 62. Unique Paths</title><link>https://jay16213.github.io/posts/leetcode/leetcode-62/</link><pubDate>Tue, 01 Nov 2022 22:46:23 +0800</pubDate><guid>https://jay16213.github.io/posts/leetcode/leetcode-62/</guid><description>題目難度：Medium
+題目連結: Unique Paths
+題目大綱 給你一個 m x n 的矩陣地圖, 請你找出從座標 (0, 0) 走到 (m-1, n-1) 一共有多少種走法。題目有限制每一次只能往下或往右走一步。
+解題思路 解法一 - DP 設計一個 2 維陣列 dp[m][n], 其中 dp[i][j] 對應到座標 (i, j)，代表了從 (0, 0) 走到 (i, j) 一共有多少種走法。
+接著從題目的限制我們可以知道，要走到 (i, j) 的話一定要先走到 (i-1, j) 或是 (i, j-1)，然後再往下或往右走一步來到達 (i, j)。
+也就是說，走到 (i, j) 的走法數，會等於走到 (i-1, j) 的走法數加上走到 (i, j-1) 的走法數
+有了這層關係，我們就可以得出 dp 的公式如下：
+dp[i][j] = dp[i - 1][j] + dp[i][j - 1] 而一開始要初始化 dp[i][0] = 1 (0 &amp;lt;= i &amp;lt;= m) 以及 dp[0][j] = 1 (0 &amp;lt;= j &amp;lt;= n)，代表從起點開始，一路往右或往下都只有一種走法</description></item><item><title>Leetcode 隨筆 - 139. Word Break</title><link>https://jay16213.github.io/posts/leetcode/leetcode-139/</link><pubDate>Sun, 30 Oct 2022 00:35:01 +0800</pubDate><guid>https://jay16213.github.io/posts/leetcode/leetcode-139/</guid><description>題目難度：Medium
+題目連結: Word Break
+題目大綱 給定一個字串 s 和一個字串陣列 wordDict, 請你判斷是否有辦法
+程式碼 解法一 這是我看完 NeetCode 影片的前半段的解題思路後想出來的解法
+class Solution { private: vector&amp;lt;int&amp;gt; word_len; int s_len; vector&amp;lt;int&amp;gt; dp; public: void solve(string&amp;amp; s, int idx, vector&amp;lt;string&amp;gt;&amp;amp; wordDict) { if (idx &amp;gt;= s_len) { dp[s_len] = 1; return; } if (dp[idx] != -1) return; for (int i = 0; i &amp;lt; wordDict.size(); i++) { if (s.compare(idx, word_len[i], wordDict[i]) == 0) { solve(s, idx + word_len[i], wordDict); if (dp[s_len] == 1) return; } } dp[idx] = 0; } bool wordBreak(string s, vector&amp;lt;string&amp;gt;&amp;amp; wordDict) { word_len.</description></item><item><title>Leetcode 隨筆 - 152. Maximum Product Subarray</title><link>https://jay16213.github.io/posts/leetcode/leetcode-152/</link><pubDate>Sat, 29 Oct 2022 14:10:08 +0800</pubDate><guid>https://jay16213.github.io/posts/leetcode/leetcode-152/</guid><description>題目難度：Medium
+題目連結: Maximum Product Subarray
+題目大綱 給你一個整數陣列, 找出擁有最大乘積的子陣列 (contiguous non-empty subarray)
+程式碼 class Solution { public: int maxProduct(vector&amp;lt;int&amp;gt;&amp;amp; nums) { int ans = nums[0]; int max_product = 1; int min_product = 1; int t1, t2; for (int i = 0; i &amp;lt; nums.size(); i++) { t1 = max_product * nums[i]; t2 = min_product * nums[i]; max_product = max(t1, max(t2, nums[i])); min_product = min(t1, min(t2, nums[i])); ans = max(max_product, ans); } return ans; } };</description></item></channel></rss>
