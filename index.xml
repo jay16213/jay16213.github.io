@@ -1,0 +1,366 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Jay's Blog</title><link>https://jay16213.github.io/</link><description>Recent content on Jay's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-tw</language><lastBuildDate>Fri, 04 Oct 2024 16:48:04 +0000</lastBuildDate><atom:link href="https://jay16213.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>[OpenWrt] 使用 Tailscale + AdGuardHome 架設個人 VPN 網域</title><link>https://jay16213.github.io/posts/use-tailscale-adguardhome-to-build-vpn/</link><pubDate>Fri, 04 Oct 2024 16:48:04 +0000</pubDate><guid>https://jay16213.github.io/posts/use-tailscale-adguardhome-to-build-vpn/</guid><description>在 OpenWrt 上使用 Tailscale 架設個人私有網域</description></item><item><title>Binary Search 中的 lower bound &amp; upper bound</title><link>https://jay16213.github.io/posts/algorithm-note/binary-search/</link><pubDate>Mon, 24 Jul 2023 21:56:23 +0800</pubDate><guid>https://jay16213.github.io/posts/algorithm-note/binary-search/</guid><description>&lt;h2 id="前言">前言&lt;/h2>
+&lt;p>c++ 的 STL 有提供兩個跟 binary seach 有關的 function: &lt;code>lower_bound&lt;/code> 和 &lt;code>upper_bound&lt;/code>, 每次在寫 leetcode 相關的題目時都會一直忘記這兩個 function 的定義，故決定紀錄一下兩者的定義及用法&lt;/p>
+&lt;h4 id="include-stl">Include STL&lt;/h4>
+&lt;p>&lt;code>lower_bound&lt;/code> 和 &lt;code>upper_bound&lt;/code> 被定義在 &lt;code>&amp;lt;algorithm&amp;gt;&lt;/code> 裡面&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c++" data-lang="c++">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">#include&lt;/span> &lt;span style="color:#75715e">&amp;lt;algorithm&amp;gt;&lt;/span>&lt;span style="color:#75715e">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="lower-bound">Lower Bound&lt;/h3>
+&lt;p>找出數列中第一個 &lt;strong>大於或等於&lt;/strong> target 的位置, 換句話說就是找到 &lt;code>&amp;gt;= target&lt;/code> 的最小值的位置&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c++" data-lang="c++">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// vector&amp;lt;int&amp;gt; v;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// assume v is a sorted array
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">auto&lt;/span> it &lt;span style="color:#f92672">=&lt;/span> lower_bound(v.begin(), v.end(), target);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">int&lt;/span> idx &lt;span style="color:#f92672">=&lt;/span> it &lt;span style="color:#f92672">-&lt;/span> v.begin();
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="upper-bound">Upper Bound&lt;/h3>
+&lt;p>找出數列中第一個 &lt;strong>大於&lt;/strong> target 的位置, 換句話說就是找到 &lt;code>&amp;gt; target&lt;/code> 的最小值的位置&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c++" data-lang="c++">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// vector&amp;lt;int&amp;gt; v;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">// assume v is a sorted array
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">&lt;/span>&lt;span style="color:#66d9ef">auto&lt;/span> it &lt;span style="color:#f92672">=&lt;/span> upper_bound(v.begin(), v.end(), target) &lt;span style="color:#f92672">-&lt;/span> v.begin();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">int&lt;/span> idx &lt;span style="color:#f92672">=&lt;/span> it &lt;span style="color:#f92672">-&lt;/span> v.begin();
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;br>
+&lt;p>&lt;code>lower_bound&lt;/code> 和 &lt;code>upper_bound&lt;/code> 都會回傳 對應型態的 iterator, 如果傳入的 sequence 找不到目標值，就會回傳 &lt;code>v.end()&lt;/code>&lt;/p></description></item><item><title>如何在 Local 端測試/執行 Github Actions</title><link>https://jay16213.github.io/posts/test-github-actions-locally/</link><pubDate>Sat, 15 Jul 2023 13:59:32 +0800</pubDate><guid>https://jay16213.github.io/posts/test-github-actions-locally/</guid><description>&lt;h2 id="前言">前言&lt;/h2>
+&lt;p>最近在寫 side project 時想要設定 &lt;a href="https://docs.github.com/en/actions" target="_blank" rel="noopener">Github Actions&lt;/a> 來自動化編譯跟測試流程，但是按照我之前的經驗是第一次設定 github action 的 workflow 時都會需要不斷修改來達到自己想要的結果，但是如果想要測試的話就會需要一直 commit &amp;amp; push 到 github 上面才有辦法測試，因此這次在設定 workflow 前，我想要找到一個可以不用 push 到 github 就可以在 local 端測試我的 workflow 的工具，這樣我就可以先測試完我的 workflow 後再一次 push 上去 github, 減少設定錯誤的機會，也不用一直繁瑣的 commit &amp;amp; push.&lt;/p>
+&lt;p>而我找到的工具就是 &lt;a href="https://github.com/nektos/act" target="_blank" rel="noopener">nektos/act&lt;/a> 這個專案，目前在 github 上約有 40k 個 stars，可見這個需求有多大，本篇文就是紀錄如何使用這個工具的筆記。&lt;/p>
+&lt;h2 id="install">Install&lt;/h2>
+&lt;p>&lt;code>nektos/act&lt;/code> 這個專案有提供多種平台以及安裝方式，因為基本上我只會用這個工具來測試我的 workflow 有沒有寫錯，因此我選擇的是安裝官方提供的 &lt;a href="https://cli.github.com/" target="_blank" rel="noopener">GitHub CLI&lt;/a> 擴充套件&lt;/p>
+&lt;h3 id="install-github-cli">Install Github CLI&lt;/h3>
+&lt;p>&lt;a href="https://github.com/cli/cli#installation" target="_blank" rel="noopener">Offical installation guide&lt;/a>&lt;/p>
+&lt;p>首先按照官方教學安裝 Github CLI&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>type -p curl &amp;gt;/dev/null &lt;span style="color:#f92672">||&lt;/span> &lt;span style="color:#f92672">(&lt;/span>sudo apt update &lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> sudo apt install curl -y&lt;span style="color:#f92672">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of&lt;span style="color:#f92672">=&lt;/span>/usr/share/keyrings/githubcli-archive-keyring.gpg &lt;span style="color:#ae81ff">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">&lt;/span>&lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> sudo chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg &lt;span style="color:#ae81ff">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">&lt;/span>&lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> echo &lt;span style="color:#e6db74">&amp;#34;deb [arch=&lt;/span>&lt;span style="color:#66d9ef">$(&lt;/span>dpkg --print-architecture&lt;span style="color:#66d9ef">)&lt;/span>&lt;span style="color:#e6db74"> signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main&amp;#34;&lt;/span> | sudo tee /etc/apt/sources.list.d/github-cli.list &amp;gt; /dev/null &lt;span style="color:#ae81ff">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">&lt;/span>&lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> sudo apt update &lt;span style="color:#ae81ff">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">&lt;/span>&lt;span style="color:#f92672">&amp;amp;&amp;amp;&lt;/span> sudo apt install gh -y
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;br>
+&lt;p>安裝完畢後，在終端機上打 &lt;code>gh&lt;/code> 就可以使用 Github CLI 了&lt;/p></description></item><item><title>如何在 Synology NAS 使用 non-root user 執行 Docker command</title><link>https://jay16213.github.io/posts/run-docker-command-without-sudo-on-synology-nas/</link><pubDate>Wed, 21 Jun 2023 21:59:18 +0800</pubDate><guid>https://jay16213.github.io/posts/run-docker-command-without-sudo-on-synology-nas/</guid><description>&lt;p>最近因為需要在 Synology NAS 上部署 &lt;a href="https://coder.com/" target="_blank" rel="noopener">Coder&lt;/a>，container 需要 docker 的運行權限，因為 DSM 的 docker 比較特別，故這裡紀錄一下要如何讓非 root user 也能使用 docker&lt;/p>
+&lt;h3 id="步驟">步驟&lt;/h3>
+&lt;p>首先 ssh 進 NAS 後，使用以下指令來新增 &amp;ldquo;docker&amp;rdquo; 這個 group, 並把需要 docker 權限的 user 加入 docker group&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sudo synogroup --add docker
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sudo synogroup --member docker $USER &lt;span style="color:#75715e"># 將自己加入 docker group&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;br>
+&lt;p>成功新增後，登入 DSM，可以看到在使用者群組的地方多了一個 &lt;code>docker&lt;/code>, 可以加上補充說明這個 group 的作用 (所以理論上應該直接在 DSM 新增 group 就好了，但是我沒試過)
+&lt;img alt="dsm" src="https://jay16213.github.io/posts/run-docker-command-without-sudo-on-synology-nas/dsm.jpg">&lt;/p>
+&lt;p>接著將 docker.sock 的 group ownership 從 root 改成 docker&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sudo chown root:docker /var/run/docker.sock
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>改完後重新登入，應該就可以不用加 sudo 就可以執行 docker command 了！&lt;/p></description></item><item><title>[OpenWrt] 如何擴充 squashfs 的可用空間</title><link>https://jay16213.github.io/posts/openwrt-expand-squashfs/</link><pubDate>Mon, 28 Nov 2022 23:22:05 +0800</pubDate><guid>https://jay16213.github.io/posts/openwrt-expand-squashfs/</guid><description>&lt;h2 id="問題">問題&lt;/h2>
+&lt;p>我的 OpenWrt 是安裝在樹梅派上面，採用 squashfs, 安裝完後可以正常使用，但是可用空間只有 100 MB 左右，這是正常現象，如果沒有要安裝很多套件的話其實 100 MB 很夠用了，但是就無法完整利用到整個 SD 卡的空間 (我是裝 32G)；如果要裝 docker 等較大型的套件很快就空間不足了，故本篇文章即是要解決此問題。&lt;/p>
+&lt;blockquote>
+&lt;p>其實官方有 &lt;a href="https://openwrt.org/docs/guide-user/installation/installation_methods/sd_card" target="_blank" rel="noopener">Wiki&lt;/a> 教學是利用到 &lt;code>losetup&lt;/code> 來完成，但是我自己嘗試是沒有成功的，我也懶得研究為甚麼，僅留下連結給有興趣的讀者自行嘗試看看。&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="解決方式">解決方式&lt;/h2>
+&lt;p>首先安裝套件，我們需要 &lt;code>cfdisk&lt;/code> 和 &lt;code>resize2fs&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>opkg update
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>opkg install cfdisk resize2fs
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>安裝好後，可以先用 &lt;code>ls /dev&lt;/code> 確認你的 SD 卡的 device 名稱，通常應該會是 &lt;code>/dev/mmcblk0&lt;/code>&lt;/p>
+&lt;p>在 terminal 輸入以下指令&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>cfdisk /dev/mmcblk0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;br>接著你應該會進入 cfdisk 的互動式介面
+&lt;img alt="cfdisk ui" src="https://jay16213.github.io/posts/openwrt-expand-squashfs/cfdisk-ui.jpg">&lt;/p>
+&lt;p>可以看到在 &lt;code>/dev/mmcblk0p2&lt;/code> 後面有很大的 free space.&lt;/p>
+&lt;p>接下來，用鍵盤移到 &lt;code>/dev/mmcblk0p2&lt;/code>，會出現 &lt;code>Resize&lt;/code> 的選項，選擇 &lt;code>Resize&lt;/code>
+&lt;img alt="resize" src="https://jay16213.github.io/posts/openwrt-expand-squashfs/resize.jpg">&lt;/p>
+&lt;p>這時系統會要你輸入要劃多大的空間，這裡不用輸入，保留預設值就好，這樣系統就會把所有的 free space 都劃進 &lt;code>/dev/mmcblk0p2&lt;/code>，結果如下
+&lt;img alt="resize-done" src="https://jay16213.github.io/posts/openwrt-expand-squashfs/resize-done.jpg">&lt;/p>
+&lt;p>完成後輸入 &lt;code>yes&lt;/code> 確認變更，這時候從畫面上可以看到 &lt;code>/dev/mmcblk0p2&lt;/code> 已經變成 29.7 G 了！確認沒問題後選擇 &lt;code>Write&lt;/code> 把此次變更寫入，&lt;code>Quit&lt;/code> 離開 cfdisk&lt;/p></description></item><item><title>Leetcode 隨筆 - 62. Unique Paths</title><link>https://jay16213.github.io/posts/leetcode/leetcode-62/</link><pubDate>Tue, 01 Nov 2022 22:46:23 +0800</pubDate><guid>https://jay16213.github.io/posts/leetcode/leetcode-62/</guid><description>&lt;p>題目難度：&lt;kbd>Medium&lt;/kbd>&lt;br/>&lt;/p>
+&lt;blockquote>
+&lt;p>題目連結: &lt;a href="https://leetcode.com/problems/unique-paths/" target="_blank" rel="noopener">Unique Paths&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="題目大綱">題目大綱&lt;/h2>
+&lt;p>給你一個 &lt;code>m x n&lt;/code> 的矩陣地圖, 請你找出從座標 &lt;code>(0, 0)&lt;/code> 走到 &lt;code>(m-1, n-1)&lt;/code> 一共有多少種走法。題目有限制每一次只能往下或往右走一步。&lt;/p>
+&lt;h2 id="解題思路">解題思路&lt;/h2>
+&lt;h3 id="解法一---dp">解法一 - DP&lt;/h3>
+&lt;p>設計一個 2 維陣列 &lt;code>dp[m][n]&lt;/code>, 其中 &lt;code>dp[i][j]&lt;/code> 對應到座標 &lt;code>(i, j)&lt;/code>，代表了從 &lt;code>(0, 0)&lt;/code> 走到 &lt;code>(i, j)&lt;/code> 一共有多少種走法。&lt;/p>
+&lt;p>接著從題目的限制我們可以知道，要走到 &lt;code>(i, j)&lt;/code> 的話一定要先走到 &lt;code>(i-1, j)&lt;/code> 或是 &lt;code>(i, j-1)&lt;/code>，然後再往下或往右走一步來到達 &lt;code>(i, j)&lt;/code>。&lt;/p>
+&lt;p>也就是說，&lt;strong>走到 &lt;code>(i, j)&lt;/code> 的走法數，會等於走到 &lt;code>(i-1, j)&lt;/code> 的走法數加上走到 &lt;code>(i, j-1)&lt;/code> 的走法數&lt;/strong>&lt;/p>
+&lt;p>有了這層關係，我們就可以得出 dp 的公式如下：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c++" data-lang="c++">&lt;span style="display:flex;">&lt;span>dp[i][j] &lt;span style="color:#f92672">=&lt;/span> dp[i &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>][j] &lt;span style="color:#f92672">+&lt;/span> dp[i][j &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>而一開始要初始化 &lt;code>dp[i][0] = 1 (0 &amp;lt;= i &amp;lt;= m)&lt;/code> 以及 &lt;code>dp[0][j] = 1 (0 &amp;lt;= j &amp;lt;= n)&lt;/code>，代表從起點開始，一路往右或往下都只有一種走法&lt;/p></description></item><item><title>Leetcode 隨筆 - 139. Word Break</title><link>https://jay16213.github.io/posts/leetcode/leetcode-139/</link><pubDate>Sun, 30 Oct 2022 00:35:01 +0800</pubDate><guid>https://jay16213.github.io/posts/leetcode/leetcode-139/</guid><description>&lt;p>題目難度：&lt;kbd>Medium&lt;/kbd>&lt;br/>&lt;/p>
+&lt;blockquote>
+&lt;p>題目連結: &lt;a href="https://leetcode.com/problems/word-break/" target="_blank" rel="noopener">Word Break&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="題目大綱">題目大綱&lt;/h2>
+&lt;p>給定一個字串 &lt;code>s&lt;/code> 和一個字串陣列 &lt;code>wordDict&lt;/code>, 請你判斷是否有辦法&lt;/p>
+&lt;h2 id="程式碼">程式碼&lt;/h2>
+&lt;h3 id="解法一">解法一&lt;/h3>
+&lt;p>這是我看完 &lt;a href="https://www.youtube.com/watch?v=Sx9NNgInc3A" target="_blank" rel="noopener">NeetCode&lt;/a> 影片的前半段的解題思路後想出來的解法&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c++" data-lang="c++">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Solution&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">private&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span> word_len;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> s_len;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span> dp;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">void&lt;/span> solve(string&lt;span style="color:#f92672">&amp;amp;&lt;/span> s, &lt;span style="color:#66d9ef">int&lt;/span> idx, vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>string&lt;span style="color:#f92672">&amp;gt;&amp;amp;&lt;/span> wordDict)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (idx &lt;span style="color:#f92672">&amp;gt;=&lt;/span> s_len)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> dp[s_len] &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (dp[idx] &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> (&lt;span style="color:#66d9ef">int&lt;/span> i &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>; i &lt;span style="color:#f92672">&amp;lt;&lt;/span> wordDict.size(); i&lt;span style="color:#f92672">++&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (s.compare(idx, word_len[i], wordDict[i]) &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> solve(s, idx &lt;span style="color:#f92672">+&lt;/span> word_len[i], wordDict);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (dp[s_len] &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> dp[idx] &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">bool&lt;/span> &lt;span style="color:#a6e22e">wordBreak&lt;/span>(string s, vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>string&lt;span style="color:#f92672">&amp;gt;&amp;amp;&lt;/span> wordDict) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> word_len.resize(wordDict.size(), &lt;span style="color:#ae81ff">0&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> s_len &lt;span style="color:#f92672">=&lt;/span> s.length();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> dp.resize(s_len &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>, &lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> dp[s_len] &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> (&lt;span style="color:#66d9ef">int&lt;/span> i &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>; i &lt;span style="color:#f92672">&amp;lt;&lt;/span> wordDict.size(); i&lt;span style="color:#f92672">++&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> word_len[i] &lt;span style="color:#f92672">=&lt;/span> wordDict[i].length();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> solve(s, &lt;span style="color:#ae81ff">0&lt;/span>, wordDict);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> dp[s_len];
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="解法二">解法二&lt;/h3>
+&lt;p>NeetCode 提出的最佳解&lt;/p></description></item><item><title>Leetcode 隨筆 - 152. Maximum Product Subarray</title><link>https://jay16213.github.io/posts/leetcode/leetcode-152/</link><pubDate>Sat, 29 Oct 2022 14:10:08 +0800</pubDate><guid>https://jay16213.github.io/posts/leetcode/leetcode-152/</guid><description>&lt;p>題目難度：&lt;kbd>Medium&lt;/kbd>&lt;br/>&lt;/p>
+&lt;blockquote>
+&lt;p>題目連結: &lt;a href="https://leetcode.com/problems/maximum-product-subarray/" target="_blank" rel="noopener">Maximum Product Subarray&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="題目大綱">題目大綱&lt;/h2>
+&lt;p>給你一個整數陣列, 找出擁有最大乘積的子陣列 (contiguous non-empty subarray)&lt;/p>
+&lt;h2 id="程式碼">程式碼&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c++" data-lang="c++">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Solution&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> maxProduct(vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;amp;&lt;/span> nums) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> ans &lt;span style="color:#f92672">=&lt;/span> nums[&lt;span style="color:#ae81ff">0&lt;/span>];
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> max_product &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> min_product &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> t1, t2;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> (&lt;span style="color:#66d9ef">int&lt;/span> i &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>; i &lt;span style="color:#f92672">&amp;lt;&lt;/span> nums.size(); i&lt;span style="color:#f92672">++&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> t1 &lt;span style="color:#f92672">=&lt;/span> max_product &lt;span style="color:#f92672">*&lt;/span> nums[i];
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> t2 &lt;span style="color:#f92672">=&lt;/span> min_product &lt;span style="color:#f92672">*&lt;/span> nums[i];
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> max_product &lt;span style="color:#f92672">=&lt;/span> max(t1, max(t2, nums[i]));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> min_product &lt;span style="color:#f92672">=&lt;/span> min(t1, min(t2, nums[i]));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ans &lt;span style="color:#f92672">=&lt;/span> max(max_product, ans);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> ans;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Leetcode 隨筆 - 199. Binary Tree Right Side View</title><link>https://jay16213.github.io/posts/leetcode/leetcode-199/</link><pubDate>Mon, 11 Jul 2022 21:48:41 +0800</pubDate><guid>https://jay16213.github.io/posts/leetcode/leetcode-199/</guid><description>&lt;p>題目難度：&lt;kbd>Medium&lt;/kbd>&lt;br/>&lt;/p>
+&lt;blockquote>
+&lt;p>題目連結: &lt;a href="https://leetcode.com/problems/binary-tree-right-side-view/" target="_blank" rel="noopener">Binary Tree Right Side View&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="題目大綱">題目大綱&lt;/h2>
+&lt;p>給你一個 binary tree, 請你找出：從右邊看這棵樹，能看到的 node 有哪些。&lt;/p>
+&lt;h2 id="解題思路">解題思路&lt;/h2>
+&lt;p>這題翻譯過後就是，請你找出此 binary tree 的每一層的最右邊的 node，所以我們只需要使用 level order traverse 的方式把 tree 掃過一遍抓出每層最右邊的 node 就行了！&lt;/p>
+&lt;h2 id="程式碼">程式碼&lt;/h2>
+&lt;p>實作採用 C++ STL 的 queue, 遍歷時加上每個 node 的 level 資訊，當每掃到新的 level 時就會把該 node 加進 ans 裡面並更新 level 資訊；再來因為我們需要最右邊的 node, 所以 traverse 順序改成先掃右邊的 subtree 再掃左邊 subtree 的方式比較方便實作。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c++" data-lang="c++">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/**
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * Definition for a binary tree node.
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * struct TreeNode {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * int val;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * TreeNode *left;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * TreeNode *right;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * TreeNode() : val(0), left(nullptr), right(nullptr) {}
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * };
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Solution&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span> rightSideView(TreeNode&lt;span style="color:#f92672">*&lt;/span> root) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> queue&lt;span style="color:#f92672">&amp;lt;&lt;/span>pair&lt;span style="color:#f92672">&amp;lt;&lt;/span>TreeNode&lt;span style="color:#f92672">*&lt;/span>, &lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;gt;&lt;/span> q;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> pair&lt;span style="color:#f92672">&amp;lt;&lt;/span>TreeNode&lt;span style="color:#f92672">*&lt;/span>, &lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span> node;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span> ans;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> cur_level &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (root &lt;span style="color:#f92672">==&lt;/span> NULL)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> q.push(pair&lt;span style="color:#f92672">&amp;lt;&lt;/span>TreeNode&lt;span style="color:#f92672">*&lt;/span>, &lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span>(root, &lt;span style="color:#ae81ff">0&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">while&lt;/span> (&lt;span style="color:#f92672">!&lt;/span>q.empty()) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> node &lt;span style="color:#f92672">=&lt;/span> q.front();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> q.pop();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (node.second &lt;span style="color:#f92672">!=&lt;/span> cur_level) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ans.push_back(node.first&lt;span style="color:#f92672">-&amp;gt;&lt;/span>val);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> cur_level &lt;span style="color:#f92672">=&lt;/span> node.second;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (node.first&lt;span style="color:#f92672">-&amp;gt;&lt;/span>right &lt;span style="color:#f92672">!=&lt;/span> NULL) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> q.push(pair&lt;span style="color:#f92672">&amp;lt;&lt;/span>TreeNode&lt;span style="color:#f92672">*&lt;/span>, &lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span>(node.first&lt;span style="color:#f92672">-&amp;gt;&lt;/span>right, node.second &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (node.first&lt;span style="color:#f92672">-&amp;gt;&lt;/span>left &lt;span style="color:#f92672">!=&lt;/span> NULL) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> q.push(pair&lt;span style="color:#f92672">&amp;lt;&lt;/span>TreeNode&lt;span style="color:#f92672">*&lt;/span>, &lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span>(node.first&lt;span style="color:#f92672">-&amp;gt;&lt;/span>left, node.second &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> ans;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Leetcode 隨筆 - 665. Non-decreasing Array</title><link>https://jay16213.github.io/posts/leetcode/leetcode-665/</link><pubDate>Sat, 25 Jun 2022 13:44:48 +0800</pubDate><guid>https://jay16213.github.io/posts/leetcode/leetcode-665/</guid><description>&lt;p>題目難度：&lt;kbd>Medium&lt;/kbd>&lt;br/>&lt;/p>
+&lt;blockquote>
+&lt;p>題目連結: &lt;a href="https://leetcode.com/problems/non-decreasing-array/" target="_blank" rel="noopener">Non-decreasing Array&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="題目大綱">題目大綱&lt;/h2>
+&lt;p>給你一個陣列 &lt;code>nums&lt;/code>，請你檢查是否可以在 &amp;ldquo;最多修改一個元素的值&amp;rdquo; 的限制下，把這個陣列變成一個非遞減陣列 (原來就已經是非遞減陣列也可以算通過檢查)&lt;/p>
+&lt;p>非遞減定義：
+&lt;code>nums[i] &amp;lt;= nums[i+1], where 0 &amp;lt;= i &amp;lt;= nums.size()-2&lt;/code>&lt;/p>
+&lt;h2 id="解題思路">解題思路&lt;/h2>
+&lt;p>首先需要把陣列從頭開始掃描一遍，遇到 &lt;code>nums[i+1] &amp;lt; nums[i]&lt;/code> 時停下來檢查是否可以修改元素值來完成題目要求，如果可以改，那就紀錄本次修改。所以我們可以用一個 counter 來記錄修改次數，而若修改次數大於 1 次就可以提前結束不用再往後檢查了。&lt;/p>
+&lt;p>接下來重點就是：要怎麼確認可以修改(改成非遞減)？
+這裡可以分成幾個 case 來討論：&lt;/p>
+&lt;h4 id="case-1-陣列的開頭-or-結尾發生遞減情況">Case 1. 陣列的開頭 or 結尾發生遞減情況&lt;/h4>
+&lt;p>也就是 &lt;code>nums[0] &amp;gt; nums[1]&lt;/code> or &lt;code>nums[nums.size()-1] &amp;gt; nums[nums.size()-2]&lt;/code>，這時候一定可以修改，因為只要把陣列頭的值往下修或把陣列尾的值往上調就可以了，所以直接更新 counter (&lt;code>counter++&lt;/code>) 即可。&lt;/p>
+&lt;h4 id="case-2-陣列中間發生遞減情況">Case 2. 陣列中間發生遞減情況&lt;/h4>
+&lt;p>這時候發生了 &lt;code>nums[i+1] &amp;lt; nums[i]&lt;/code>，為了判斷是否能夠只改一個值就能改成非遞減陣列，我們必須額外再抓出 &lt;code>nums[i-1]&lt;/code> &amp;amp; &lt;code>nums[i+2]&lt;/code> 這兩個元素來幫助我們判斷。&lt;/p>
+&lt;p>首先第一項檢查&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;code>nums[i+2]&lt;/code> 是否大於等於 &lt;code>nums[i-1]&lt;/code> ?&lt;/p>
+&lt;/blockquote>
+&lt;p>因為若這個條件不符合，代表除了 &lt;code>nums[i]&lt;/code> 跟 &lt;code>nums[i+1]&lt;/code> 之外，在 &lt;code>nums[i+2]&lt;/code> 這個位置又讓陣列發生了遞減情況，所以至少要改兩個地方，這樣絕對達不到題目要求，因此我們可以提早結束判斷、回傳失敗結果。&lt;/p></description></item><item><title>LeetCode 隨筆 - 74. Search a 2D Matrix</title><link>https://jay16213.github.io/posts/leetcode/leetcode-74/</link><pubDate>Sat, 18 Jun 2022 23:38:19 +0800</pubDate><guid>https://jay16213.github.io/posts/leetcode/leetcode-74/</guid><description>&lt;p>題目難度：&lt;kbd>Medium&lt;/kbd>&lt;br/>&lt;/p>
+&lt;blockquote>
+&lt;p>題目連結: &lt;a href="https://leetcode.com/problems/search-a-2d-matrix/" target="_blank" rel="noopener">Search a 2D Matrix&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="題目大綱">題目大綱&lt;/h2>
+&lt;p>給你一個 &lt;code>m x n&lt;/code> 的整數二維陣列和一個 value &lt;code>target&lt;/code>，要你判斷 &lt;code>target&lt;/code> 是否在這個陣列中。
+題目保證這個二維陣列：&lt;/p>
+&lt;ol>
+&lt;li>每個 row 的數字的順序已經由小到大排序過了&lt;/li>
+&lt;li>每個 row 的第一個數字一定比上一個 row 的最後一個數字還要大&lt;/li>
+&lt;/ol>
+&lt;h2 id="解題思路">解題思路&lt;/h2>
+&lt;p>由題目可知，將這個二維陣列按照 row 展開成一維陣列後就是一個排序過的 array，所以我們就可以直接用 &lt;strong>二分搜 (Binary Search)&lt;/strong> 來找 &lt;code>target&lt;/code>。
+需要注意的是傳入的是二維陣列，所以在寫 binary search 的時候需要轉換一維 &amp;amp; 二維之間的坐標系&lt;/p>
+&lt;p>一維 &amp;amp; 二維坐標系轉換範例：
+假設我們要轉換一維陣列的 index &lt;code>i&lt;/code> 到一個 &lt;code>m x n&lt;/code> (&lt;code>m&lt;/code> rows * &lt;code>n&lt;/code> columns) 的二維陣列的 index &lt;code>(row, col)&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c++" data-lang="c++">&lt;span style="display:flex;">&lt;span>row &lt;span style="color:#f92672">=&lt;/span> i &lt;span style="color:#f92672">/&lt;/span> n;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>col &lt;span style="color:#f92672">=&lt;/span> i &lt;span style="color:#f92672">%&lt;/span> n;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="程式碼">程式碼&lt;/h2>
+&lt;p>binary search 可以使用迴圈或遞迴的方式來實作，以下提供兩種版本供讀者參考&lt;/p>
+&lt;h3 id="迴圈版">迴圈版&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c++" data-lang="c++">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Solution&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">bool&lt;/span> searchMatrix(vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;gt;&amp;amp;&lt;/span> matrix, &lt;span style="color:#66d9ef">int&lt;/span> target) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> m &lt;span style="color:#f92672">=&lt;/span> matrix.size();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> n &lt;span style="color:#f92672">=&lt;/span> matrix[&lt;span style="color:#ae81ff">0&lt;/span>].size();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> left &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>, right &lt;span style="color:#f92672">=&lt;/span> m&lt;span style="color:#f92672">*&lt;/span>n &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> i, j, mid;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">while&lt;/span> (left &lt;span style="color:#f92672">&amp;lt;=&lt;/span> right) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> mid &lt;span style="color:#f92672">=&lt;/span> (left &lt;span style="color:#f92672">+&lt;/span> right) &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> i &lt;span style="color:#f92672">=&lt;/span> mid &lt;span style="color:#f92672">/&lt;/span> n;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> j &lt;span style="color:#f92672">=&lt;/span> mid &lt;span style="color:#f92672">%&lt;/span> n;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (matrix[i][j] &lt;span style="color:#f92672">==&lt;/span> target) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> true;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">else&lt;/span> &lt;span style="color:#a6e22e">if&lt;/span> (matrix[i][j] &lt;span style="color:#f92672">&amp;gt;&lt;/span> target) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> right &lt;span style="color:#f92672">=&lt;/span> mid &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">else&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> left &lt;span style="color:#f92672">=&lt;/span> mid &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> false;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="遞迴版">遞迴版&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c++" data-lang="c++">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Solution&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> m, n;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">bool&lt;/span> &lt;span style="color:#a6e22e">searchMatrix&lt;/span>(vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;gt;&amp;amp;&lt;/span> matrix, &lt;span style="color:#66d9ef">int&lt;/span> target) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> m &lt;span style="color:#f92672">=&lt;/span> matrix.size();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> n &lt;span style="color:#f92672">=&lt;/span> matrix[&lt;span style="color:#ae81ff">0&lt;/span>].size();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> binarySearch(matrix, target, &lt;span style="color:#ae81ff">0&lt;/span>, m&lt;span style="color:#f92672">*&lt;/span>n &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">bool&lt;/span> &lt;span style="color:#a6e22e">binarySearch&lt;/span>(vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;gt;&amp;amp;&lt;/span> matrix, &lt;span style="color:#66d9ef">int&lt;/span> target, &lt;span style="color:#66d9ef">int&lt;/span> begin, &lt;span style="color:#66d9ef">int&lt;/span> end) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> mid;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> i, j;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (begin &lt;span style="color:#f92672">&amp;gt;&lt;/span> end)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> false;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> mid &lt;span style="color:#f92672">=&lt;/span> (begin &lt;span style="color:#f92672">+&lt;/span> end) &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> i &lt;span style="color:#f92672">=&lt;/span> mid &lt;span style="color:#f92672">/&lt;/span> n;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> j &lt;span style="color:#f92672">=&lt;/span> mid &lt;span style="color:#f92672">%&lt;/span> n;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (matrix[i][j] &lt;span style="color:#f92672">==&lt;/span> target) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> true;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">else&lt;/span> &lt;span style="color:#66d9ef">if&lt;/span> (matrix[i][j] &lt;span style="color:#f92672">&amp;gt;&lt;/span> target) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> binarySearch(matrix, target, begin, mid&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">else&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> binarySearch(matrix, target, mid&lt;span style="color:#f92672">+&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>, end);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>LeetCode 隨筆 - 203. Remove Linked List Elements</title><link>https://jay16213.github.io/posts/leetcode/leetcode-203/</link><pubDate>Sun, 19 Sep 2021 01:31:18 +0800</pubDate><guid>https://jay16213.github.io/posts/leetcode/leetcode-203/</guid><description>&lt;p>題目難度：&lt;kbd>Easy&lt;/kbd>&lt;/p>
+&lt;h2 id="題目大綱">題目大綱&lt;/h2>
+&lt;p>給你一個單向的 linked list, 再給你一個數字 &lt;code>val&lt;/code>, 移除該 linked list 中所有 &lt;code>Node.val == val&lt;/code> 的 node 並回傳處理完後的 linked list.&lt;/p>
+&lt;h2 id="解題思路">解題思路&lt;/h2>
+&lt;p>分兩步驟來解：&lt;/p>
+&lt;ol>
+&lt;li>首先檢查 head node 是否符合條件，若 head 符合條件則一直執行 &lt;code>head = head-&amp;gt;next&lt;/code> ，不斷地把 head 截掉直到 head 是有效的 (&lt;code>Node.val != val&lt;/code>)&lt;/li>
+&lt;li>接著一個 node 一個 node 去歷遍整個 list, 每個 node 的操作為：看下一個 node (後續以 next node 代稱) 是否符合條件，若符合的話就把自己的 next 指標接到 next node 的 next 指標 (也就是移除該 next node)，並繼續比較新的 next node (也就是回到第 2 步剛開始的操作)，否則繼續往下 loop 剩餘的 node&lt;/li>
+&lt;/ol>
+&lt;blockquote>
+&lt;p>理論上移除掉的 node 要記得 free 掉不然會 memory leak, 不過這只是練習而已 LeetCode 好像也沒檢查這個，有沒有 free 掉都可以 AC&lt;/p></description></item><item><title>Raspberry Pi 透過 Serial Port 連線 - 踩雷筆記</title><link>https://jay16213.github.io/posts/raspberry-serial-port-login/</link><pubDate>Wed, 10 Feb 2021 00:14:53 +0800</pubDate><guid>https://jay16213.github.io/posts/raspberry-serial-port-login/</guid><description>&lt;p>最近因為想要從 serial port 登入樹梅派而入手了一個 USB 轉 TTL 傳輸線，沒想到設定過程踩了不少雷，故寫了這篇作為提醒用。&lt;/p>
+&lt;p>我是從電子材料行買的，型號為&lt;a href="https://www.ltc.com.tw/Product/Detail?ICODE=CONCBLUSBTTL" target="_blank" rel="noopener">CONCBLUSBTTL&lt;/a>，使用 PL2303TA 晶片&lt;/p>
+&lt;p>&lt;img src="pl2303ta.jpg"
+alt="pl2303ta"
+class="center"
+>
+&lt;div style="margin-top: 3rem;">&lt;/div>&lt;/p>
+&lt;p>理論上 win10 可以自動抓可以用的驅動，不需要特別下載。但如果有問題的話還是可以從晶片製造商的&lt;a href="http://www.prolific.com.tw/US/ShowProduct.aspx?p_id=225&amp;amp;pcid=41" target="_blank" rel="noopener">驅動程式下載頁面&lt;/a>下載最新的驅動。解壓縮後除了驅動程式外還有一個小程式可以用來檢查晶片型號。&lt;/p>
+&lt;p>這裡遇到我採的第一個雷 (自己雷)：在我一開始無法順利設定時，經爬文得知，由於舊款晶片 (PL2303HX 系列) 有偽造情形，故 win10 自動抓的驅動並不支援該款晶片的產品，需要下載舊版驅動才行，我還以為自己真幸運在 2021 還買得到舊款晶片，大費周章跑去前人的 blog 載舊版驅動，結果還是不行；又因為在舊版驅動下跑上面原廠提供的晶片型號檢查程式會將我的傳輸線誤判為 PL2303XA/PL2303HXA&lt;/p>
+&lt;p>&lt;img src="pl2303hx.jpg"
+alt="pl2303hx"
+class="center"
+>
+&lt;div style="margin-top: 3rem;">&lt;/div>&lt;/p>
+&lt;p>害我誤以為自己真的買到 PL2303HX 晶片，一直往錯誤的方向 google。後來完全解決不了，改用新版驅動再測最後一次，想說不行就要放棄這條線了，才發現原來都是驅動搞的鬼。&lt;/p>
+&lt;p>這裡提醒一下接線的注意事項，傳輸線和樹梅派的 TX/RX 要反著接，也就是 線的 TX 要接到 Pi 的 RX，線的 RX 要接到 Pi 的 TX。GND 當然也要記得接。我這條線還有一個 5V 線，接上去後可以為 Pi 供電並開機，不過看其他人文章表示不一定要接這條線，而且我怕 GPIO 的供電不穩 (我用的是 pi 4, pi 4 在供電不足的情況下 wifi 會無法連線，就算能順利連上品質也不好，所以供電一定要足) 所以就沒接了。&lt;/p>
+&lt;p>解決完驅動問題接下來就剩連線設定了，這裡是第二個要注意的地方，所有參數都要設定正確不然就會連不上！像是 speed，網路上的教學大都多是教人設定為 115200，但我的這條線，在裝置管理員的預設值為 9600，所以連線時要設 9600；還有 flow control 不論是 putty 或是 MobaXterm 預設都會是 Xon/Xoff，同樣與這條線的預設值不符，要記得關掉。&lt;/p></description></item><item><title>OpenCV on Raspberry Pi 3</title><link>https://jay16213.github.io/posts/opencv-on-raspberry/</link><pubDate>Mon, 02 Apr 2018 23:44:05 +0800</pubDate><guid>https://jay16213.github.io/posts/opencv-on-raspberry/</guid><description>&lt;h3 id="簡介">簡介&lt;/h3>
+&lt;p>&lt;a href="https://opencv.org/" target="_blank" rel="noopener">OpenCV&lt;/a> 是由 intel 主導的一個電腦視覺的跨平台 library，可以用在許多應用上。yolo real-time detection ( 關於 yolo 的安裝與使用可以看&lt;a href="https://jay16213.github.io/posts/yolo-on-raspberry/">我之前寫的文章: Yolo on Raspberry Pi 3&lt;/a> ) 就有用到 OpenCV。這篇文章就是要教如何在樹梅派上自行編譯、安裝 OpenCV 函式庫。雖然是強調在樹梅派上安裝 OpenCV，不過都是流程都是按照&lt;a href="https://docs.opencv.org/master/d7/d9f/tutorial_linux_install.html" target="_blank" rel="noopener">官方文件的 Linux 平台安裝教學&lt;/a>走，所以只要是 Linux 平台都可以理論上都可以照著本篇文章來安裝 OpenCV！（當然裡面有些指令可能會不太一樣，例如 &lt;code>apt-get&lt;/code> 是 debian 流派，如果是 redhat 就要換成 &lt;code>yum&lt;/code>）&lt;/p>
+&lt;p>要提醒的是 OpenCV 還有很多安裝的參數可以調整（例如對更多 Python / Java 的支援等）但是這篇文章目的是基本的 OpenCV 安裝，所以會略過那些非必要的步驟，需要更多自訂設定的人可以點上面的官方教學自行研究。&lt;/p>
+&lt;h3 id="安裝教學">安裝教學&lt;/h3>
+&lt;ol>
+&lt;li>首先安裝套件&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>sudo apt-get install build-essential
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>sudo apt-get install python-dev python-numpy libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev &lt;span style="color:#75715e"># 這行的套件非必要，可裝可不裝&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
+&lt;li>從 Github 上把原始碼 clone 下來，並進入 opencv 資料夾&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>cd ~/ &lt;span style="color:#75715e"># 可自行選擇 clone 的位置&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>git clone https://github.com/opencv/opencv.git
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>cd ~/opencv
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>整個 repo 有快 500 MB，clone 需要花一點時間&lt;/p></description></item><item><title>Yolo on Raspberry Pi 3</title><link>https://jay16213.github.io/posts/yolo-on-raspberry/</link><pubDate>Wed, 28 Mar 2018 00:57:00 +0800</pubDate><guid>https://jay16213.github.io/posts/yolo-on-raspberry/</guid><description>&lt;h3 id="簡介">簡介&lt;/h3>
+&lt;p>Yolo 是一開放原始碼的影像辨識工具，可以進行圖片、影片、即時影像辨識。因為我的專題需要一個偵測人物走進一個空間的功能，因此認識了這套工具。但我對影像辨識實在不熟，因此接下來不會討論有關 yolo 的技術或是他的演算法等。有興趣的人可以自行去找它的論文慢慢看。&lt;/p>
+&lt;blockquote>
+&lt;p>Yolo 官方網站 : &lt;a href="https://pjreddie.com/darknet/yolo/" target="_blank" rel="noopener">https://pjreddie.com/darknet/yolo/&lt;/a>
+Yolo 目前最新版為第 3 版&lt;/p>
+&lt;/blockquote>
+&lt;p>這篇文章會教你如何在樹梅派 (使用 raspberry pi model 3b) 上安裝及使用 yolo，由於在樹梅派跑 v3 會有問題(下面會提到 )，所以這篇文章的示範會以 yolov2 為主。&lt;/p>
+&lt;h3 id="安裝-yolo">安裝 Yolo&lt;/h3>
+&lt;p>Yolo的安裝相當簡單，僅需將 repo clone 下來 make 即可&lt;/p>
+&lt;pre tabindex="0">&lt;code>git clone https://github.com/pjreddie/darknet
+cd darknet
+make
+&lt;/code>&lt;/pre>&lt;h3 id="下載-weights-檔">下載 weights 檔&lt;/h3>
+&lt;pre tabindex="0">&lt;code>wget https://pjreddie.com/media/files/yolov2.weights
+&lt;/code>&lt;/pre>&lt;p>如果要下載不同的權重檔，請參考 &lt;code>cfg/&lt;/code> 資料夾內的 .cfg 的檔名，將檔名複製下來，附檔名改成 .weights 即可用 wgets 下載&lt;/p>
+&lt;h2 id="來試試-yolo-吧">來試試 yolo 吧&lt;/h2>
+&lt;pre tabindex="0">&lt;code>./darknet detect cfg/yolov2.cfg yolov2.weights data/dog.jpg
+&lt;/code>&lt;/pre>&lt;p>以上指令會辨識一張範例圖片，並生成 &lt;code>prediction.png&lt;/code> 檔，這個檔案是經過辨識後 yolo 將他辨識出來的物件加上外框而成 ( 實際效果可參考官網 )，如果執行指令都沒問題就表示安裝成功 !&lt;/p>
+&lt;p>在執行上述指令後，你可能會發現一個問題: 辨識速度也太慢了吧 ! 但因為樹梅派的運算能力有限，所以這個問題無解。不過 yolo 也有很多 model 可以選，我們可以用 &lt;em>tiny yolo&lt;/em>，這個比較輕量的 model 來跑我們的辨識，但缺點就是辨識率沒有這麼高了。而且我看了一下 &lt;code>cfg/&lt;/code> 資料夾，&lt;em>tiny yolo&lt;/em> 似乎只有到 v2，第 3 版還沒出來的樣子。另外使用v3 會被 kill 掉 process，個人猜測是樹梅派的記憶體不足導致。&lt;/p></description></item><item><title>Git Stash Pop Conflict 解決方式</title><link>https://jay16213.github.io/posts/git-stash-pop-conflict-solution/</link><pubDate>Sat, 10 Feb 2018 23:59:38 +0800</pubDate><guid>https://jay16213.github.io/posts/git-stash-pop-conflict-solution/</guid><description>git stash pop conflict solution</description></item></channel></rss>

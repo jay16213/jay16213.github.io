@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Dynamic-Programming on Jay's Blog</title><link>https://jay16213.github.io/tags/dynamic-programming/</link><description>Recent content in Dynamic-Programming on Jay's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-tw</language><lastBuildDate>Tue, 01 Nov 2022 22:46:23 +0800</lastBuildDate><atom:link href="https://jay16213.github.io/tags/dynamic-programming/index.xml" rel="self" type="application/rss+xml"/><item><title>Leetcode 隨筆 - 62. Unique Paths</title><link>https://jay16213.github.io/posts/leetcode/leetcode-62/</link><pubDate>Tue, 01 Nov 2022 22:46:23 +0800</pubDate><guid>https://jay16213.github.io/posts/leetcode/leetcode-62/</guid><description>&lt;p>題目難度：&lt;kbd>Medium&lt;/kbd>&lt;br/>&lt;/p>
+&lt;blockquote>
+&lt;p>題目連結: &lt;a href="https://leetcode.com/problems/unique-paths/" target="_blank" rel="noopener">Unique Paths&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="題目大綱">題目大綱&lt;/h2>
+&lt;p>給你一個 &lt;code>m x n&lt;/code> 的矩陣地圖, 請你找出從座標 &lt;code>(0, 0)&lt;/code> 走到 &lt;code>(m-1, n-1)&lt;/code> 一共有多少種走法。題目有限制每一次只能往下或往右走一步。&lt;/p>
+&lt;h2 id="解題思路">解題思路&lt;/h2>
+&lt;h3 id="解法一---dp">解法一 - DP&lt;/h3>
+&lt;p>設計一個 2 維陣列 &lt;code>dp[m][n]&lt;/code>, 其中 &lt;code>dp[i][j]&lt;/code> 對應到座標 &lt;code>(i, j)&lt;/code>，代表了從 &lt;code>(0, 0)&lt;/code> 走到 &lt;code>(i, j)&lt;/code> 一共有多少種走法。&lt;/p>
+&lt;p>接著從題目的限制我們可以知道，要走到 &lt;code>(i, j)&lt;/code> 的話一定要先走到 &lt;code>(i-1, j)&lt;/code> 或是 &lt;code>(i, j-1)&lt;/code>，然後再往下或往右走一步來到達 &lt;code>(i, j)&lt;/code>。&lt;/p>
+&lt;p>也就是說，&lt;strong>走到 &lt;code>(i, j)&lt;/code> 的走法數，會等於走到 &lt;code>(i-1, j)&lt;/code> 的走法數加上走到 &lt;code>(i, j-1)&lt;/code> 的走法數&lt;/strong>&lt;/p>
+&lt;p>有了這層關係，我們就可以得出 dp 的公式如下：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c++" data-lang="c++">&lt;span style="display:flex;">&lt;span>dp[i][j] &lt;span style="color:#f92672">=&lt;/span> dp[i &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>][j] &lt;span style="color:#f92672">+&lt;/span> dp[i][j &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>而一開始要初始化 &lt;code>dp[i][0] = 1 (0 &amp;lt;= i &amp;lt;= m)&lt;/code> 以及 &lt;code>dp[0][j] = 1 (0 &amp;lt;= j &amp;lt;= n)&lt;/code>，代表從起點開始，一路往右或往下都只有一種走法&lt;/p></description></item><item><title>Leetcode 隨筆 - 139. Word Break</title><link>https://jay16213.github.io/posts/leetcode/leetcode-139/</link><pubDate>Sun, 30 Oct 2022 00:35:01 +0800</pubDate><guid>https://jay16213.github.io/posts/leetcode/leetcode-139/</guid><description>&lt;p>題目難度：&lt;kbd>Medium&lt;/kbd>&lt;br/>&lt;/p>
+&lt;blockquote>
+&lt;p>題目連結: &lt;a href="https://leetcode.com/problems/word-break/" target="_blank" rel="noopener">Word Break&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="題目大綱">題目大綱&lt;/h2>
+&lt;p>給定一個字串 &lt;code>s&lt;/code> 和一個字串陣列 &lt;code>wordDict&lt;/code>, 請你判斷是否有辦法&lt;/p>
+&lt;h2 id="程式碼">程式碼&lt;/h2>
+&lt;h3 id="解法一">解法一&lt;/h3>
+&lt;p>這是我看完 &lt;a href="https://www.youtube.com/watch?v=Sx9NNgInc3A" target="_blank" rel="noopener">NeetCode&lt;/a> 影片的前半段的解題思路後想出來的解法&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c++" data-lang="c++">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Solution&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">private&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span> word_len;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> s_len;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span> dp;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">void&lt;/span> solve(string&lt;span style="color:#f92672">&amp;amp;&lt;/span> s, &lt;span style="color:#66d9ef">int&lt;/span> idx, vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>string&lt;span style="color:#f92672">&amp;gt;&amp;amp;&lt;/span> wordDict)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (idx &lt;span style="color:#f92672">&amp;gt;=&lt;/span> s_len)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> dp[s_len] &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (dp[idx] &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> (&lt;span style="color:#66d9ef">int&lt;/span> i &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>; i &lt;span style="color:#f92672">&amp;lt;&lt;/span> wordDict.size(); i&lt;span style="color:#f92672">++&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (s.compare(idx, word_len[i], wordDict[i]) &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> solve(s, idx &lt;span style="color:#f92672">+&lt;/span> word_len[i], wordDict);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (dp[s_len] &lt;span style="color:#f92672">==&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> dp[idx] &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">bool&lt;/span> &lt;span style="color:#a6e22e">wordBreak&lt;/span>(string s, vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>string&lt;span style="color:#f92672">&amp;gt;&amp;amp;&lt;/span> wordDict) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> word_len.resize(wordDict.size(), &lt;span style="color:#ae81ff">0&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> s_len &lt;span style="color:#f92672">=&lt;/span> s.length();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> dp.resize(s_len &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>, &lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> dp[s_len] &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> (&lt;span style="color:#66d9ef">int&lt;/span> i &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>; i &lt;span style="color:#f92672">&amp;lt;&lt;/span> wordDict.size(); i&lt;span style="color:#f92672">++&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> word_len[i] &lt;span style="color:#f92672">=&lt;/span> wordDict[i].length();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> solve(s, &lt;span style="color:#ae81ff">0&lt;/span>, wordDict);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> dp[s_len];
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="解法二">解法二&lt;/h3>
+&lt;p>NeetCode 提出的最佳解&lt;/p></description></item><item><title>Leetcode 隨筆 - 152. Maximum Product Subarray</title><link>https://jay16213.github.io/posts/leetcode/leetcode-152/</link><pubDate>Sat, 29 Oct 2022 14:10:08 +0800</pubDate><guid>https://jay16213.github.io/posts/leetcode/leetcode-152/</guid><description>&lt;p>題目難度：&lt;kbd>Medium&lt;/kbd>&lt;br/>&lt;/p>
+&lt;blockquote>
+&lt;p>題目連結: &lt;a href="https://leetcode.com/problems/maximum-product-subarray/" target="_blank" rel="noopener">Maximum Product Subarray&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="題目大綱">題目大綱&lt;/h2>
+&lt;p>給你一個整數陣列, 找出擁有最大乘積的子陣列 (contiguous non-empty subarray)&lt;/p>
+&lt;h2 id="程式碼">程式碼&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c++" data-lang="c++">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Solution&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> maxProduct(vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;amp;&lt;/span> nums) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> ans &lt;span style="color:#f92672">=&lt;/span> nums[&lt;span style="color:#ae81ff">0&lt;/span>];
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> max_product &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> min_product &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> t1, t2;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> (&lt;span style="color:#66d9ef">int&lt;/span> i &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>; i &lt;span style="color:#f92672">&amp;lt;&lt;/span> nums.size(); i&lt;span style="color:#f92672">++&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> t1 &lt;span style="color:#f92672">=&lt;/span> max_product &lt;span style="color:#f92672">*&lt;/span> nums[i];
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> t2 &lt;span style="color:#f92672">=&lt;/span> min_product &lt;span style="color:#f92672">*&lt;/span> nums[i];
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> max_product &lt;span style="color:#f92672">=&lt;/span> max(t1, max(t2, nums[i]));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> min_product &lt;span style="color:#f92672">=&lt;/span> min(t1, min(t2, nums[i]));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ans &lt;span style="color:#f92672">=&lt;/span> max(max_product, ans);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> ans;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>

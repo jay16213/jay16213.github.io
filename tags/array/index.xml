@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Array on Jay's Blog</title><link>https://jay16213.github.io/tags/array/</link><description>Recent content in Array on Jay's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-tw</language><lastBuildDate>Sat, 29 Oct 2022 14:10:08 +0800</lastBuildDate><atom:link href="https://jay16213.github.io/tags/array/index.xml" rel="self" type="application/rss+xml"/><item><title>Leetcode 隨筆 - 152. Maximum Product Subarray</title><link>https://jay16213.github.io/posts/leetcode/leetcode-152/</link><pubDate>Sat, 29 Oct 2022 14:10:08 +0800</pubDate><guid>https://jay16213.github.io/posts/leetcode/leetcode-152/</guid><description>&lt;p>題目難度：&lt;kbd>Medium&lt;/kbd>&lt;br/>&lt;/p>
+&lt;blockquote>
+&lt;p>題目連結: &lt;a href="https://leetcode.com/problems/maximum-product-subarray/" target="_blank" rel="noopener">Maximum Product Subarray&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="題目大綱">題目大綱&lt;/h2>
+&lt;p>給你一個整數陣列, 找出擁有最大乘積的子陣列 (contiguous non-empty subarray)&lt;/p>
+&lt;h2 id="程式碼">程式碼&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c++" data-lang="c++">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Solution&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> maxProduct(vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;amp;&lt;/span> nums) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> ans &lt;span style="color:#f92672">=&lt;/span> nums[&lt;span style="color:#ae81ff">0&lt;/span>];
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> max_product &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> min_product &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> t1, t2;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">for&lt;/span> (&lt;span style="color:#66d9ef">int&lt;/span> i &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>; i &lt;span style="color:#f92672">&amp;lt;&lt;/span> nums.size(); i&lt;span style="color:#f92672">++&lt;/span>)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> t1 &lt;span style="color:#f92672">=&lt;/span> max_product &lt;span style="color:#f92672">*&lt;/span> nums[i];
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> t2 &lt;span style="color:#f92672">=&lt;/span> min_product &lt;span style="color:#f92672">*&lt;/span> nums[i];
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> max_product &lt;span style="color:#f92672">=&lt;/span> max(t1, max(t2, nums[i]));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> min_product &lt;span style="color:#f92672">=&lt;/span> min(t1, min(t2, nums[i]));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ans &lt;span style="color:#f92672">=&lt;/span> max(max_product, ans);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> ans;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Leetcode 隨筆 - 199. Binary Tree Right Side View</title><link>https://jay16213.github.io/posts/leetcode/leetcode-199/</link><pubDate>Mon, 11 Jul 2022 21:48:41 +0800</pubDate><guid>https://jay16213.github.io/posts/leetcode/leetcode-199/</guid><description>&lt;p>題目難度：&lt;kbd>Medium&lt;/kbd>&lt;br/>&lt;/p>
+&lt;blockquote>
+&lt;p>題目連結: &lt;a href="https://leetcode.com/problems/binary-tree-right-side-view/" target="_blank" rel="noopener">Binary Tree Right Side View&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="題目大綱">題目大綱&lt;/h2>
+&lt;p>給你一個 binary tree, 請你找出：從右邊看這棵樹，能看到的 node 有哪些。&lt;/p>
+&lt;h2 id="解題思路">解題思路&lt;/h2>
+&lt;p>這題翻譯過後就是，請你找出此 binary tree 的每一層的最右邊的 node，所以我們只需要使用 level order traverse 的方式把 tree 掃過一遍抓出每層最右邊的 node 就行了！&lt;/p>
+&lt;h2 id="程式碼">程式碼&lt;/h2>
+&lt;p>實作採用 C++ STL 的 queue, 遍歷時加上每個 node 的 level 資訊，當每掃到新的 level 時就會把該 node 加進 ans 裡面並更新 level 資訊；再來因為我們需要最右邊的 node, 所以 traverse 順序改成先掃右邊的 subtree 再掃左邊 subtree 的方式比較方便實作。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c++" data-lang="c++">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e">/**
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * Definition for a binary tree node.
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * struct TreeNode {
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * int val;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * TreeNode *left;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * TreeNode *right;
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * TreeNode() : val(0), left(nullptr), right(nullptr) {}
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> * };
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#75715e"> */&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Solution&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span> rightSideView(TreeNode&lt;span style="color:#f92672">*&lt;/span> root) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> queue&lt;span style="color:#f92672">&amp;lt;&lt;/span>pair&lt;span style="color:#f92672">&amp;lt;&lt;/span>TreeNode&lt;span style="color:#f92672">*&lt;/span>, &lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;gt;&lt;/span> q;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> pair&lt;span style="color:#f92672">&amp;lt;&lt;/span>TreeNode&lt;span style="color:#f92672">*&lt;/span>, &lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span> node;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span> ans;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> cur_level &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (root &lt;span style="color:#f92672">==&lt;/span> NULL)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span>();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> q.push(pair&lt;span style="color:#f92672">&amp;lt;&lt;/span>TreeNode&lt;span style="color:#f92672">*&lt;/span>, &lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span>(root, &lt;span style="color:#ae81ff">0&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">while&lt;/span> (&lt;span style="color:#f92672">!&lt;/span>q.empty()) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> node &lt;span style="color:#f92672">=&lt;/span> q.front();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> q.pop();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (node.second &lt;span style="color:#f92672">!=&lt;/span> cur_level) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> ans.push_back(node.first&lt;span style="color:#f92672">-&amp;gt;&lt;/span>val);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> cur_level &lt;span style="color:#f92672">=&lt;/span> node.second;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (node.first&lt;span style="color:#f92672">-&amp;gt;&lt;/span>right &lt;span style="color:#f92672">!=&lt;/span> NULL) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> q.push(pair&lt;span style="color:#f92672">&amp;lt;&lt;/span>TreeNode&lt;span style="color:#f92672">*&lt;/span>, &lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span>(node.first&lt;span style="color:#f92672">-&amp;gt;&lt;/span>right, node.second &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (node.first&lt;span style="color:#f92672">-&amp;gt;&lt;/span>left &lt;span style="color:#f92672">!=&lt;/span> NULL) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> q.push(pair&lt;span style="color:#f92672">&amp;lt;&lt;/span>TreeNode&lt;span style="color:#f92672">*&lt;/span>, &lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&lt;/span>(node.first&lt;span style="color:#f92672">-&amp;gt;&lt;/span>left, node.second &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>));
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> ans;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title>Leetcode 隨筆 - 665. Non-decreasing Array</title><link>https://jay16213.github.io/posts/leetcode/leetcode-665/</link><pubDate>Sat, 25 Jun 2022 13:44:48 +0800</pubDate><guid>https://jay16213.github.io/posts/leetcode/leetcode-665/</guid><description>&lt;p>題目難度：&lt;kbd>Medium&lt;/kbd>&lt;br/>&lt;/p>
+&lt;blockquote>
+&lt;p>題目連結: &lt;a href="https://leetcode.com/problems/non-decreasing-array/" target="_blank" rel="noopener">Non-decreasing Array&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="題目大綱">題目大綱&lt;/h2>
+&lt;p>給你一個陣列 &lt;code>nums&lt;/code>，請你檢查是否可以在 &amp;ldquo;最多修改一個元素的值&amp;rdquo; 的限制下，把這個陣列變成一個非遞減陣列 (原來就已經是非遞減陣列也可以算通過檢查)&lt;/p>
+&lt;p>非遞減定義：
+&lt;code>nums[i] &amp;lt;= nums[i+1], where 0 &amp;lt;= i &amp;lt;= nums.size()-2&lt;/code>&lt;/p>
+&lt;h2 id="解題思路">解題思路&lt;/h2>
+&lt;p>首先需要把陣列從頭開始掃描一遍，遇到 &lt;code>nums[i+1] &amp;lt; nums[i]&lt;/code> 時停下來檢查是否可以修改元素值來完成題目要求，如果可以改，那就紀錄本次修改。所以我們可以用一個 counter 來記錄修改次數，而若修改次數大於 1 次就可以提前結束不用再往後檢查了。&lt;/p>
+&lt;p>接下來重點就是：要怎麼確認可以修改(改成非遞減)？
+這裡可以分成幾個 case 來討論：&lt;/p>
+&lt;h4 id="case-1-陣列的開頭-or-結尾發生遞減情況">Case 1. 陣列的開頭 or 結尾發生遞減情況&lt;/h4>
+&lt;p>也就是 &lt;code>nums[0] &amp;gt; nums[1]&lt;/code> or &lt;code>nums[nums.size()-1] &amp;gt; nums[nums.size()-2]&lt;/code>，這時候一定可以修改，因為只要把陣列頭的值往下修或把陣列尾的值往上調就可以了，所以直接更新 counter (&lt;code>counter++&lt;/code>) 即可。&lt;/p>
+&lt;h4 id="case-2-陣列中間發生遞減情況">Case 2. 陣列中間發生遞減情況&lt;/h4>
+&lt;p>這時候發生了 &lt;code>nums[i+1] &amp;lt; nums[i]&lt;/code>，為了判斷是否能夠只改一個值就能改成非遞減陣列，我們必須額外再抓出 &lt;code>nums[i-1]&lt;/code> &amp;amp; &lt;code>nums[i+2]&lt;/code> 這兩個元素來幫助我們判斷。&lt;/p>
+&lt;p>首先第一項檢查&lt;/p>
+&lt;blockquote>
+&lt;p>&lt;code>nums[i+2]&lt;/code> 是否大於等於 &lt;code>nums[i-1]&lt;/code> ?&lt;/p>
+&lt;/blockquote>
+&lt;p>因為若這個條件不符合，代表除了 &lt;code>nums[i]&lt;/code> 跟 &lt;code>nums[i+1]&lt;/code> 之外，在 &lt;code>nums[i+2]&lt;/code> 這個位置又讓陣列發生了遞減情況，所以至少要改兩個地方，這樣絕對達不到題目要求，因此我們可以提早結束判斷、回傳失敗結果。&lt;/p></description></item><item><title>LeetCode 隨筆 - 74. Search a 2D Matrix</title><link>https://jay16213.github.io/posts/leetcode/leetcode-74/</link><pubDate>Sat, 18 Jun 2022 23:38:19 +0800</pubDate><guid>https://jay16213.github.io/posts/leetcode/leetcode-74/</guid><description>&lt;p>題目難度：&lt;kbd>Medium&lt;/kbd>&lt;br/>&lt;/p>
+&lt;blockquote>
+&lt;p>題目連結: &lt;a href="https://leetcode.com/problems/search-a-2d-matrix/" target="_blank" rel="noopener">Search a 2D Matrix&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="題目大綱">題目大綱&lt;/h2>
+&lt;p>給你一個 &lt;code>m x n&lt;/code> 的整數二維陣列和一個 value &lt;code>target&lt;/code>，要你判斷 &lt;code>target&lt;/code> 是否在這個陣列中。
+題目保證這個二維陣列：&lt;/p>
+&lt;ol>
+&lt;li>每個 row 的數字的順序已經由小到大排序過了&lt;/li>
+&lt;li>每個 row 的第一個數字一定比上一個 row 的最後一個數字還要大&lt;/li>
+&lt;/ol>
+&lt;h2 id="解題思路">解題思路&lt;/h2>
+&lt;p>由題目可知，將這個二維陣列按照 row 展開成一維陣列後就是一個排序過的 array，所以我們就可以直接用 &lt;strong>二分搜 (Binary Search)&lt;/strong> 來找 &lt;code>target&lt;/code>。
+需要注意的是傳入的是二維陣列，所以在寫 binary search 的時候需要轉換一維 &amp;amp; 二維之間的坐標系&lt;/p>
+&lt;p>一維 &amp;amp; 二維坐標系轉換範例：
+假設我們要轉換一維陣列的 index &lt;code>i&lt;/code> 到一個 &lt;code>m x n&lt;/code> (&lt;code>m&lt;/code> rows * &lt;code>n&lt;/code> columns) 的二維陣列的 index &lt;code>(row, col)&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c++" data-lang="c++">&lt;span style="display:flex;">&lt;span>row &lt;span style="color:#f92672">=&lt;/span> i &lt;span style="color:#f92672">/&lt;/span> n;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>col &lt;span style="color:#f92672">=&lt;/span> i &lt;span style="color:#f92672">%&lt;/span> n;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="程式碼">程式碼&lt;/h2>
+&lt;p>binary search 可以使用迴圈或遞迴的方式來實作，以下提供兩種版本供讀者參考&lt;/p>
+&lt;h3 id="迴圈版">迴圈版&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c++" data-lang="c++">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Solution&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">bool&lt;/span> searchMatrix(vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;gt;&amp;amp;&lt;/span> matrix, &lt;span style="color:#66d9ef">int&lt;/span> target) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> m &lt;span style="color:#f92672">=&lt;/span> matrix.size();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> n &lt;span style="color:#f92672">=&lt;/span> matrix[&lt;span style="color:#ae81ff">0&lt;/span>].size();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> left &lt;span style="color:#f92672">=&lt;/span> &lt;span style="color:#ae81ff">0&lt;/span>, right &lt;span style="color:#f92672">=&lt;/span> m&lt;span style="color:#f92672">*&lt;/span>n &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> i, j, mid;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">while&lt;/span> (left &lt;span style="color:#f92672">&amp;lt;=&lt;/span> right) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> mid &lt;span style="color:#f92672">=&lt;/span> (left &lt;span style="color:#f92672">+&lt;/span> right) &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> i &lt;span style="color:#f92672">=&lt;/span> mid &lt;span style="color:#f92672">/&lt;/span> n;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> j &lt;span style="color:#f92672">=&lt;/span> mid &lt;span style="color:#f92672">%&lt;/span> n;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (matrix[i][j] &lt;span style="color:#f92672">==&lt;/span> target) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> true;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">else&lt;/span> &lt;span style="color:#a6e22e">if&lt;/span> (matrix[i][j] &lt;span style="color:#f92672">&amp;gt;&lt;/span> target) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> right &lt;span style="color:#f92672">=&lt;/span> mid &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">else&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> left &lt;span style="color:#f92672">=&lt;/span> mid &lt;span style="color:#f92672">+&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> false;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="遞迴版">遞迴版&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c++" data-lang="c++">&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">class&lt;/span> &lt;span style="color:#a6e22e">Solution&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#66d9ef">public&lt;/span>&lt;span style="color:#f92672">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> m, n;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">bool&lt;/span> &lt;span style="color:#a6e22e">searchMatrix&lt;/span>(vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;gt;&amp;amp;&lt;/span> matrix, &lt;span style="color:#66d9ef">int&lt;/span> target) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> m &lt;span style="color:#f92672">=&lt;/span> matrix.size();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> n &lt;span style="color:#f92672">=&lt;/span> matrix[&lt;span style="color:#ae81ff">0&lt;/span>].size();
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> binarySearch(matrix, target, &lt;span style="color:#ae81ff">0&lt;/span>, m&lt;span style="color:#f92672">*&lt;/span>n &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">bool&lt;/span> &lt;span style="color:#a6e22e">binarySearch&lt;/span>(vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>vector&lt;span style="color:#f92672">&amp;lt;&lt;/span>&lt;span style="color:#66d9ef">int&lt;/span>&lt;span style="color:#f92672">&amp;gt;&amp;gt;&amp;amp;&lt;/span> matrix, &lt;span style="color:#66d9ef">int&lt;/span> target, &lt;span style="color:#66d9ef">int&lt;/span> begin, &lt;span style="color:#66d9ef">int&lt;/span> end) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> mid;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">int&lt;/span> i, j;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (begin &lt;span style="color:#f92672">&amp;gt;&lt;/span> end)
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> false;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> mid &lt;span style="color:#f92672">=&lt;/span> (begin &lt;span style="color:#f92672">+&lt;/span> end) &lt;span style="color:#f92672">/&lt;/span> &lt;span style="color:#ae81ff">2&lt;/span>;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> i &lt;span style="color:#f92672">=&lt;/span> mid &lt;span style="color:#f92672">/&lt;/span> n;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> j &lt;span style="color:#f92672">=&lt;/span> mid &lt;span style="color:#f92672">%&lt;/span> n;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">if&lt;/span> (matrix[i][j] &lt;span style="color:#f92672">==&lt;/span> target) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> true;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">else&lt;/span> &lt;span style="color:#66d9ef">if&lt;/span> (matrix[i][j] &lt;span style="color:#f92672">&amp;gt;&lt;/span> target) {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> binarySearch(matrix, target, begin, mid&lt;span style="color:#f92672">-&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> } &lt;span style="color:#66d9ef">else&lt;/span> {
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#66d9ef">return&lt;/span> binarySearch(matrix, target, mid&lt;span style="color:#f92672">+&lt;/span>&lt;span style="color:#ae81ff">1&lt;/span>, end);
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> }
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>};
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>

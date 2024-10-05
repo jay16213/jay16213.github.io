@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Combinatorics on Jay's Blog</title><link>https://jay16213.github.io/tags/combinatorics/</link><description>Recent content in Combinatorics on Jay's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-tw</language><lastBuildDate>Tue, 01 Nov 2022 22:46:23 +0800</lastBuildDate><atom:link href="https://jay16213.github.io/tags/combinatorics/index.xml" rel="self" type="application/rss+xml"/><item><title>Leetcode 隨筆 - 62. Unique Paths</title><link>https://jay16213.github.io/posts/leetcode/leetcode-62/</link><pubDate>Tue, 01 Nov 2022 22:46:23 +0800</pubDate><guid>https://jay16213.github.io/posts/leetcode/leetcode-62/</guid><description>&lt;p>題目難度：&lt;kbd>Medium&lt;/kbd>&lt;br/>&lt;/p>
+&lt;blockquote>
+&lt;p>題目連結: &lt;a href="https://leetcode.com/problems/unique-paths/" target="_blank" rel="noopener">Unique Paths&lt;/a>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="題目大綱">題目大綱&lt;/h2>
+&lt;p>給你一個 &lt;code>m x n&lt;/code> 的矩陣地圖, 請你找出從座標 &lt;code>(0, 0)&lt;/code> 走到 &lt;code>(m-1, n-1)&lt;/code> 一共有多少種走法。題目有限制每一次只能往下或往右走一步。&lt;/p>
+&lt;h2 id="解題思路">解題思路&lt;/h2>
+&lt;h3 id="解法一---dp">解法一 - DP&lt;/h3>
+&lt;p>設計一個 2 維陣列 &lt;code>dp[m][n]&lt;/code>, 其中 &lt;code>dp[i][j]&lt;/code> 對應到座標 &lt;code>(i, j)&lt;/code>，代表了從 &lt;code>(0, 0)&lt;/code> 走到 &lt;code>(i, j)&lt;/code> 一共有多少種走法。&lt;/p>
+&lt;p>接著從題目的限制我們可以知道，要走到 &lt;code>(i, j)&lt;/code> 的話一定要先走到 &lt;code>(i-1, j)&lt;/code> 或是 &lt;code>(i, j-1)&lt;/code>，然後再往下或往右走一步來到達 &lt;code>(i, j)&lt;/code>。&lt;/p>
+&lt;p>也就是說，&lt;strong>走到 &lt;code>(i, j)&lt;/code> 的走法數，會等於走到 &lt;code>(i-1, j)&lt;/code> 的走法數加上走到 &lt;code>(i, j-1)&lt;/code> 的走法數&lt;/strong>&lt;/p>
+&lt;p>有了這層關係，我們就可以得出 dp 的公式如下：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-c++" data-lang="c++">&lt;span style="display:flex;">&lt;span>dp[i][j] &lt;span style="color:#f92672">=&lt;/span> dp[i &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>][j] &lt;span style="color:#f92672">+&lt;/span> dp[i][j &lt;span style="color:#f92672">-&lt;/span> &lt;span style="color:#ae81ff">1&lt;/span>]
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>而一開始要初始化 &lt;code>dp[i][0] = 1 (0 &amp;lt;= i &amp;lt;= m)&lt;/code> 以及 &lt;code>dp[0][j] = 1 (0 &amp;lt;= j &amp;lt;= n)&lt;/code>，代表從起點開始，一路往右或往下都只有一種走法&lt;/p></description></item></channel></rss>
