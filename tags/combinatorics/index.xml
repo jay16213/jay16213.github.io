@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Combinatorics on Jay's Blog</title><link>https://jay16213.github.io/tags/combinatorics/</link><description>Recent content in Combinatorics on Jay's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-tw</language><lastBuildDate>Tue, 01 Nov 2022 22:46:23 +0800</lastBuildDate><atom:link href="https://jay16213.github.io/tags/combinatorics/index.xml" rel="self" type="application/rss+xml"/><item><title>Leetcode 隨筆 - 62. Unique Paths</title><link>https://jay16213.github.io/posts/leetcode/leetcode-62/</link><pubDate>Tue, 01 Nov 2022 22:46:23 +0800</pubDate><guid>https://jay16213.github.io/posts/leetcode/leetcode-62/</guid><description>題目難度：Medium
+題目連結: Unique Paths
+題目大綱 給你一個 m x n 的矩陣地圖, 請你找出從座標 (0, 0) 走到 (m-1, n-1) 一共有多少種走法。題目有限制每一次只能往下或往右走一步。
+解題思路 解法一 - DP 設計一個 2 維陣列 dp[m][n], 其中 dp[i][j] 對應到座標 (i, j)，代表了從 (0, 0) 走到 (i, j) 一共有多少種走法。
+接著從題目的限制我們可以知道，要走到 (i, j) 的話一定要先走到 (i-1, j) 或是 (i, j-1)，然後再往下或往右走一步來到達 (i, j)。
+也就是說，走到 (i, j) 的走法數，會等於走到 (i-1, j) 的走法數加上走到 (i, j-1) 的走法數
+有了這層關係，我們就可以得出 dp 的公式如下：
+dp[i][j] = dp[i - 1][j] + dp[i][j - 1] 而一開始要初始化 dp[i][0] = 1 (0 &amp;lt;= i &amp;lt;= m) 以及 dp[0][j] = 1 (0 &amp;lt;= j &amp;lt;= n)，代表從起點開始，一路往右或往下都只有一種走法</description></item></channel></rss>

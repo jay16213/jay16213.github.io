@@ -1,0 +1,137 @@
+<!doctype html><html lang=zh-tw><head><title>在 Synology NAS 上用 rclone + pCloud 建立加密雲端備份</title>
+<meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=X-UA-Compatible content="ie=edge"><link rel=stylesheet href=/application.e5a39b3e9c56cc46ece081445185805d9573207b7f58dddf3163d83b414e37b7.css integrity="sha256-5aObPpxWzEbs4IFEUYWAXZVzIHt/WN3fMWPYO0FON7c="><link rel=icon type=image/png href=/images/author/avatar_hua5b3420744c2de1bf1e35bc7d9bbb2f2_83341_42x0_resize_box_3.png><meta property="og:title" content="在 Synology NAS 上用 rclone + pCloud 建立加密雲端備份"><meta property="og:description" content="使用 Docker 版 rclone 將 Synology NAS 的資料端對端加密後備份到 pCloud，包含配置、headless 授權、排程與驗證建議。"><meta property="og:type" content="article"><meta property="og:url" content="https://jay16213.github.io/posts/rclone-pcloud-backup/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2025-11-22T10:00:00+08:00"><meta property="article:modified_time" content="2025-11-22T10:00:00+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="在 Synology NAS 上用 rclone + pCloud 建立加密雲端備份"><meta name=twitter:description content="使用 Docker 版 rclone 將 Synology NAS 的資料端對端加密後備份到 pCloud，包含配置、headless 授權、排程與驗證建議。"><meta name=description content="在 Synology NAS 上用 rclone + pCloud 建立加密雲端備份"><script>theme=localStorage.getItem("darkmode:color-scheme")||"system",theme=="system"&&(window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches?theme="dark":theme="light"),document.documentElement.setAttribute("data-theme",theme)</script></head><body class="type-posts kind-page" data-spy=scroll data-target=#TableOfContents data-offset=80><div class="container-fluid bg-secondary wrapper"><nav class="navbar navbar-expand-xl top-navbar shadow" id=top-navbar><div class=container><button class="navbar-toggler navbar-light" id=sidebar-toggler type=button>
+<i data-feather=sidebar></i>
+</button>
+<a class=navbar-brand href=/><img src=/images/author/avatar_hua5b3420744c2de1bf1e35bc7d9bbb2f2_83341_42x0_resize_box_3.png id=logo alt=Logo>
+Jay's Blog</a>
+<button class="navbar-toggler navbar-light" id=navbar-toggler type=button data-toggle=collapse data-target=#top-nav-items aria-label=menu>
+<i data-feather=menu></i></button><div class="collapse navbar-collapse dynamic-navbar" id=top-nav-items><ul class="nav navbar-nav ml-auto"><li class=nav-item><a class=nav-link href=/#home>首頁</a></li><li class=nav-item><a class=nav-link href=/#about>關於</a></li><li class=nav-item><a class=nav-link href=/#recent-posts>最近文章</a></li><div id=top-navbar-divider></div><li class=nav-item><a class=nav-link id=blog-link href=/posts>文章</a></li></ul></div></div><img src=/images/author/avatar_hua5b3420744c2de1bf1e35bc7d9bbb2f2_83341_42x0_resize_box_3.png class=d-none id=main-logo alt=Logo>
+<img src=/images/author/avatar_hua5b3420744c2de1bf1e35bc7d9bbb2f2_83341_42x0_resize_box_3.png class=d-none id=inverted-logo alt="Inverted Logo"></nav><section class=sidebar-section id=sidebar-section><div class=sidebar-holder><div class=sidebar id=sidebar><form class=mx-auto method=get action=/search><input type=text name=keyword placeholder=搜索 data-search id=search-box></form><div class=sidebar-tree><ul class=tree id=tree><li id=list-heading><a href=/posts/ data-filter=all>文章</a></li><div class=subtree><li><a class=list-link href=/posts/use-tailscale-adguardhome-to-build-vpn/ title="[OpenWrt] 使用 Tailscale + AdGuardHome 架設個人 VPN 網域">[OpenWrt] 使用 Tailscale + AdGuardHome 架設個人 VPN 網域</a></li><li><a class=list-link href=/posts/openwrt-expand-squashfs/ title="[OpenWrt] 如何擴充 squashfs 的可用空間">[OpenWrt] 如何擴充 squashfs 的可用空間</a></li><li><a class=list-link href=/posts/test-github-actions-locally/ title="如何在 Local 端測試/執行 Github Actions">如何在 Local 端測試/執行 Github Actions</a></li><li><a class=list-link href=/posts/run-docker-command-without-sudo-on-synology-nas/ title="如何在 Synology NAS 使用 non-root user 執行 Docker command">如何在 Synology NAS 使用 non-root user 執行 Docker command</a></li><li><a class="active list-link" href=/posts/rclone-pcloud-backup/ title="在 Synology NAS 上用 rclone + pCloud 建立加密雲端備份">在 Synology NAS 上用 rclone + pCloud 建立加密雲端備份</a></li><li><i data-feather=plus-circle></i><a class=list-link href=/posts/leetcode/> LeetCode 隨筆</a><ul><li><a class=list-link href=/posts/leetcode/leetcode-139/ title="Leetcode 隨筆 - 139">Leetcode 隨筆 - 139</a></li><li><a class=list-link href=/posts/leetcode/leetcode-152/ title="Leetcode 隨筆 - 152">Leetcode 隨筆 - 152</a></li><li><a class=list-link href=/posts/leetcode/leetcode-199/ title="Leetcode 隨筆 - 199">Leetcode 隨筆 - 199</a></li><li><a class=list-link href=/posts/leetcode/leetcode-203/ title="LeetCode 隨筆 - 203">LeetCode 隨筆 - 203</a></li><li><a class=list-link href=/posts/leetcode/leetcode-62/ title="Leetcode 隨筆 - 62">Leetcode 隨筆 - 62</a></li><li><a class=list-link href=/posts/leetcode/leetcode-665/ title="Leetcode 隨筆 - 665">Leetcode 隨筆 - 665</a></li><li><a class=list-link href=/posts/leetcode/leetcode-74/ title="LeetCode 隨筆 - 74">LeetCode 隨筆 - 74</a></li></ul></li><li><i data-feather=plus-circle></i><a class=list-link href=/posts/algorithm-note/> 演算法筆記</a><ul><li><a class=list-link href=/posts/algorithm-note/binary-search/ title="Binary Search 中的 lower bound & upper bound">Binary Search 中的 lower bound & upper bound</a></li></ul></li><li><a class=list-link href=/posts/git-stash-pop-conflict-solution/ title="Git Stash Pop Conflict 解決方式">Git Stash Pop Conflict 解決方式</a></li><li><a class=list-link href=/posts/opencv-on-raspberry/ title="OpenCV on Raspberry Pi 3">OpenCV on Raspberry Pi 3</a></li><li><a class=list-link href=/posts/raspberry-serial-port-login/ title="Raspberry Pi 透過 Serial Port 連線 - 踩雷筆記">Raspberry Pi 透過 Serial Port 連線 - 踩雷筆記</a></li><li><a class=list-link href=/posts/yolo-on-raspberry/ title="Yolo on Raspberry Pi 3">Yolo on Raspberry Pi 3</a></li></div></ul></div></div></div></section><section class=content-section id=content-section><div class=content><div class="container p-0 read-area"><div class="hero-area col-sm-12" id=hero-area style=background-image:url(/images/default-hero.jpg)></div><div class=page-content><div class="author-profile ml-auto align-self-lg-center"><img class=rounded-circle src=/images/author/avatar_hua5b3420744c2de1bf1e35bc7d9bbb2f2_83341_120x120_fit_box_3.png alt="Author Image"><h5 class=author-name>Jay Lin</h5><p class=text-muted>Saturday, November 22, 2025 | 5</p></div><div class=title><h1>在 Synology NAS 上用 rclone + pCloud 建立加密雲端備份</h1></div><div class=tags><ul style=padding-left:0><li class=rounded><a href=/tags/rclone/ class="btn btn-sm btn-info">rclone</a></li><li class=rounded><a href=/tags/pcloud/ class="btn btn-sm btn-info">pcloud</a></li><li class=rounded><a href=/tags/synology/ class="btn btn-sm btn-info">synology</a></li><li class=rounded><a href=/tags/backup/ class="btn btn-sm btn-info">backup</a></li><li class=rounded><a href=/tags/docker/ class="btn btn-sm btn-info">docker</a></li></ul></div><div class=post-content id=post-content><h2 id=前言>前言</h2><p>本文說明如何在 Synology NAS 上使用 <code>rclone</code> 這套工具，搭配 pCloud 這個雲端來做到雲端方案的端對端加密備份，讓資料的保障更上一層樓</p><h2 id=安裝-rclone>安裝 rclone</h2><p>這邊以 macOS 為例, 透過 <code>brew</code> 安裝 rclone</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>brew install rclone
+</span></span></code></pre></div><p>Synology NAS 的部分，本文會使用 docker 來執行 rclone, 因此無須在 Synolog 的 host 上面安裝 rclone</p><h2 id=設定-rclone-remote-for-pcloud>設定 rclone remote for pCloud</h2><p>這個步驟是為了讓 rclone 取得存取 pCloud 的權限</p><p>ssh 進 Synology, 透過 docker 執行 rclone config</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>docker run --rm -it --volume /volume1/docker/rclone/config:/config/rclone --user <span style=color:#66d9ef>$(</span>id -u<span style=color:#66d9ef>)</span>:<span style=color:#66d9ef>$(</span>id -g<span style=color:#66d9ef>)</span> rclone/rclone config
+</span></span></code></pre></div><p>這邊請透過 volume 選項將 rclone 的 <code>rclone.conf</code> 設定檔放到你想放的 NAS 位置，如果沒加 volume 的話 <code>rclone.conf</code> 會放在 container 內，這樣就沒辦法保存設定給後面的備份設定使用，例如這邊的範例是我將 config 檔保存在 <code>/volume1/docker/rclone/config</code> 中，這樣一來在後面的 rclone 備份指令中就可以沿用這個步驟設定完成的 <code>rclone.conf</code></p><p>進到 rclone 的互動式介面後，選擇 New remote，接著按照系統提示一步一步設定 pcloud remote (storage type 選擇 42 代表要加入 pcloud)</p><pre tabindex=0><code>42 / Pcloud
+   \ (pcloud)
+</code></pre><p>範例設定如下 (client_id, client_secret 留空即可)</p><pre tabindex=0><code>Storage&gt; 42
+
+Option client_id.
+OAuth Client Id.
+Leave blank normally.
+Enter a value. Press Enter to leave empty.
+client_id&gt;
+
+Option client_secret.
+OAuth Client Secret.
+Leave blank normally.
+Enter a value. Press Enter to leave empty.
+client_secret&gt;
+
+Edit advanced config?
+y) Yes
+n) No (default)
+y/n&gt; n
+
+Use web browser to automatically authenticate rclone with remote?
+ * Say Y if the machine running rclone has a web browser you can use
+ * Say N if running rclone on a (remote) machine without web browser access
+If not sure try Y. If Y failed, try N.
+
+y) Yes (default)
+n) No
+y/n&gt; N
+
+Option config_token.
+For this to work, you will need rclone available on a machine that has
+a web browser available.
+For more help and alternate methods see: https://rclone.org/remote_setup/
+Execute the following on the machine with the web browser (same rclone
+version recommended):
+	rclone authorize &#34;pcloud&#34;
+Then paste the result.
+Enter a value.
+config_token&gt;
+</code></pre><br><p>到了 Option config_token 這步，由於 Synology NAS 沒有 Web browser, 因此選擇 <code>n</code>，我們回到 macOS, 使用以下指令進行認證</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>rclone authorize pcloud
+</span></span></code></pre></div><p>瀏覽器會跳轉到 pcloud 的登入頁面，登入成功後瀏覽器會顯示一個 access token，將這個 access token 貼回 Synology 的 rclone config 中就設定完成了</p><p>完成後 NAS 的檔案總管上在你指定的 volume 底下的 folder 預期可以得到一份 rclone.conf，請把這個檔案備份好</p><h2 id=設定-rclone-crypt-remote-pcloud>設定 rclone crypt remote pcloud</h2><p>順利讓 rclone 取得 pcloud 的存取權限後，接下來我們要在 rclone 開一個 crypt remote, 把 pcloud 的指定路徑變成我們的端對端加密備份的路徑</p><p>在 Synology 上透過 docker 執行 rclone config</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>docker run --rm -it --volume /volume1/docker/rclone/config:/config/rclone --user <span style=color:#66d9ef>$(</span>id -u<span style=color:#66d9ef>)</span>:<span style=color:#66d9ef>$(</span>id -g<span style=color:#66d9ef>)</span> rclone/rclone config
+</span></span></code></pre></div><p>選擇 New remote，remote name 輸入 <code>pcloud_crypt</code>，Storage type 選擇 crypt</p><pre tabindex=0><code>15 / Encrypt/Decrypt a remote
+   \ (crypt)
+</code></pre><p>接著會要你輸入想要 encrypt/decrypt 的 remote 以及 path</p><pre tabindex=0><code>Storage&gt; 15
+
+Option remote.
+Remote to encrypt/decrypt.
+Normally should contain a &#39;:&#39; and a path, e.g. &#34;myremote:path/to/dir&#34;,
+&#34;myremote:bucket&#34; or maybe &#34;myremote:&#34; (not recommended).
+Enter a value.
+remote&gt;
+</code></pre><p>remote 就輸入你前面步驟設定的 pcloud remote (這裡的 remote name 以 <code>pcloud</code> 為例)，path 的部分，需要指定一個路徑，rclone 會在 pcloud 上面建立這個路徑的 folder, 並將這個 folder 作為 rclone 使用，因此若你平常就有在使用 pcloud 存放檔案的話，強烈建議一定要指定路徑，否則 rclone 會將整個 plcoud 的根目錄都拿來使用</p><p>這邊我指定了 <code>nas_backup</code> 這個路徑，這樣一來在之後透過這個 remote 操作備份時，rclone 就會在 pcloud 的根目錄建立 nas_backup 這個 folder 並將我們的檔案加密後放進這個 folder 中</p><pre tabindex=0><code>Option remote.
+Remote to encrypt/decrypt.
+Normally should contain a &#39;:&#39; and a path, e.g. &#34;myremote:path/to/dir&#34;,
+&#34;myremote:bucket&#34; or maybe &#34;myremote:&#34; (not recommended).
+Enter a value.
+remote&gt; pcloud:nas_backup
+</code></pre><p>接著設定是否要加密檔案名稱 （預設加密）、是否要加密資料夾名稱（預設不加密），這邊依照個人偏好設定即可</p><p>接著最重要的一步：設定你的的加密金鑰 (password)</p><pre tabindex=0><code>Option password.
+Password or pass phrase for encryption.
+Choose an alternative below.
+y) Yes, type in my own password
+g) Generate random password
+</code></pre><p>可以選擇自己設定一個或是系統幫忙產一個 random password, 不論選哪一種，都請將這個加密金鑰備份好，否則將來無法解開你的備份檔案</p><p>後續還有一些進階保護的設定選項，例如是否要為你的 password 添加一個 salt、是否要加密 <code>rclone.conf</code> 等等，可根據個人需求參考官方文件去設定，本文不再贅述。</p><p>設定完成儲存後，在 rclone config 就可以看到我們成功新增了一個 crypt remote，至此 remote 的部分已經全數設定完畢，可以開始使用 rclone 備份資料了</p><h2 id=使用-docker-compose-執行備份>使用 Docker Compose 執行備份</h2><p>在這個步驟，我們要設定以下這個 docker-compose.yml 來當作我們的自動備份 task</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>version: <span style=color:#e6db74>&#34;3.9&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>services:
+</span></span><span style=display:flex><span>  rclone-foobar:
+</span></span><span style=display:flex><span>    image: rclone/rclone:latest
+</span></span><span style=display:flex><span>    container_name: rclone-foobar
+</span></span><span style=display:flex><span>    environment:
+</span></span><span style=display:flex><span>      - TZ<span style=color:#f92672>=</span>Asia/Taipei
+</span></span><span style=display:flex><span>    volumes:
+</span></span><span style=display:flex><span>      - /volume1/foobar:/data:ro                      <span style=color:#75715e># backup target</span>
+</span></span><span style=display:flex><span>      - /volume1/docker/rclone/config:/config/rclone  <span style=color:#75715e># rclone.conf</span>
+</span></span><span style=display:flex><span>      - /volume1/docker/rclone/logs:/logs             <span style=color:#75715e># log files</span>
+</span></span><span style=display:flex><span>      - /volume1/docker/rclone/scripts:/scripts       <span style=color:#75715e># backup script</span>
+</span></span><span style=display:flex><span>    <span style=color:#75715e># For Synology NAS, use the following entrypoint to run a custom script</span>
+</span></span><span style=display:flex><span>    entrypoint: <span style=color:#f92672>[</span><span style=color:#e6db74>&#34;/bin/sh&#34;</span>, <span style=color:#e6db74>&#34;/scripts/backup-foobar.sh&#34;</span><span style=color:#f92672>]</span>
+</span></span></code></pre></div><p>有幾個設定的重點，皆透過 docker volume 進行</p><ol><li>備份目標資料夾 (e.g. <code>/volume1/foobar</code>)</li><li><code>rclone.conf</code> 位置，把前面步驟設定 pcloud 產生的 rclone.conf 儲存在你要的地方並將 NAS 上的檔案路徑 (e.g. <code>/volume1/docker/rclone/config</code>) 正確的 map 到 container 的 <code>/config/rclone</code> 這個路徑</li><li>log file 存放位置：為了日後備份失敗時可以 debug, 因此可以在 NAS 上開一個 log 資料夾給 rclone 使用</li><li>備份 script 路徑 (e.g. <code>/volume1/docker/rclone/scripts</code>) : 用來執行 <code>rclone sync</code> 指令，是備份主要的觸發點，將要執行的備份 script 透過 entrypoint 設定進 compose 中</li></ol><p>範例的備份 script (<code>backup-foobar.sh</code>) 如下</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span><span style=color:#75715e>#!/bin/sh
+</span></span></span><span style=display:flex><span><span style=color:#75715e></span><span style=color:#75715e># This script is executed every time the container starts</span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Can be used with DSM scheduler to start the container daily and trigger automatic backup</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>LOG_FILE<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/logs/rclone.log&#34;</span>
+</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;=== Rclone backup started at </span><span style=color:#66d9ef>$(</span>date<span style=color:#66d9ef>)</span><span style=color:#e6db74> ===&#34;</span> &gt;&gt; <span style=color:#e6db74>&#34;</span>$LOG_FILE<span style=color:#e6db74>&#34;</span>
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#75715e># Upload data to the encrypted remote</span>
+</span></span><span style=display:flex><span>rclone sync /data pcloud_crypt:nas_backup <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>  --transfers<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>  --checkers<span style=color:#f92672>=</span><span style=color:#ae81ff>4</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>  --exclude-from<span style=color:#f92672>=</span>/config/exclude_list.txt <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>  --log-file<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;</span>$LOG_FILE<span style=color:#e6db74>&#34;</span> <span style=color:#ae81ff>\
+</span></span></span><span style=display:flex><span><span style=color:#ae81ff></span>  --log-level<span style=color:#f92672>=</span>INFO
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;=== Rclone backup completed at </span><span style=color:#66d9ef>$(</span>date<span style=color:#66d9ef>)</span><span style=color:#e6db74> ===&#34;</span> &gt;&gt; <span style=color:#e6db74>&#34;</span>$LOG_FILE<span style=color:#e6db74>&#34;</span>
+</span></span></code></pre></div><ul><li>script 中的 <code>/data</code> 會透過 docker volume 指向你的備份目標資料夾，而 <code>pcloud_crypt:nas_backup</code> 就是剛剛我們在建立 crypt remote 時的 remote name 以及路徑</li><li><code>--transfers</code> 和 <code>--checkers</code> 可以根據個人的網路能力及需求設定，log 稍候可以透過 docker volume 的方式儲存在 NAS 上面以供日後 debug</li></ul><p>接著我們設定檔案排除以及 logrotate 兩個功能</p><h4 id=設定排除檔案>設定排除檔案</h4><p>Synology NAS 的資料夾會有一些 synology 專用的索引檔案可以不用備份，我們可以透過 <code>--exclude-from</code> 來設定這些 ignore file list，以下附上我從網路上找到用來 ignore Synology 檔案的清單：</p><pre tabindex=0><code>@eaDir/**
+#recycle/**
+Thumbs.db
+desktop.ini
+.DS_Store
+._*
+.SynologyWorkingDirectory/**
+</code></pre><h4 id=設定-logrotate>設定 logrotate</h4><p>上面的 docker-compose.yml 範例，我們將 rclone 產生的 log 存在 <code>/volume1/docker/rclone/logs/</code> 中，為了必面日後 log 大小過大，因此我們利用 linux 的 logrotate 來處理 log 檔案的自動 rotate</p><p>在 NAS host 上新增一個 logrotate 設定</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>sudo vi /etc/logrotate.d/rclone
+</span></span></code></pre></div><p>範例設定如下，細部設定可以依照個人需求調整</p><pre tabindex=0><code>/volume1/docker/rclone/logs/*.log {
+    daily
+    rotate 7
+    compress
+    delaycompress
+    missingok
+    notifempty
+    copytruncate
+    size 50M
+    maxage 14
+}
+</code></pre><p>測試是否能手動 rotate</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>sudo logrotate -f /etc/logrotate.d/rclone
+</span></span></code></pre></div><h3 id=測試>測試</h3><p>全部設定完成後，可以 ssh 進 NAS 確認 docker-compose 是否能順利執行：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>docker-compose up
+</span></span></code></pre></div><p>執行完畢後，container 會自動 exit，檢查 log 無異狀並且檔案有成功上傳到 pcloud 的話就表示成功了
+可以順便在 pcloud 上面看你的檔案有沒有被成功的加密</p><h2 id=透過-dsm-自動化排程備份>透過 DSM 自動化排程備份</h2><p>在前面的步驟中，我們已經寫好了一個可以手動進行端對端加密備份的 docker-compose.yml 了，下一步就是要將備份自動化，融入日常的 NAS 任務中，我們要利用 DSM 的 排程任務 (Task Scheduler) 來作這件事情</p><h3 id=建立-rclone-user>建立 rclone user</h3><p>首先，為了防止 rclone 的權限過大，因此我們在 NAS 上為 rclone 建立一個獨立的 user, 來限制 rclone 能存取的資料夾以及讀寫權限，目標是只讓 rclone 可以讀我們的備份目標資料夾以及 docker 的執行權限，其他沒有要透過 rclone 備份的資料夾，該 user 無法存取</p><p>在 DSM 的控制台新增一個名為 <code>rclone</code> 的 user, 並將其加入 <code>docker</code> 這個 group，讓這個 user 可以不用透過 sudo 執行 docker (如何在 Synology 上建立 docker group 可以參考我之前寫的這篇<a href=/posts/run-docker-command-without-sudo-on-synology-nas>如何在 Synology NAS 使用 non-root user 執行 Docker command</a>)</p><p>資料夾權限、應用程式權限預設全部禁止存取，之後根據個人需求允許個別的資料夾權限就好</p><h3 id=新增-dsm-排程任務>新增 DSM 排程任務</h3><p>接著在 DSM 控制台的「任務排程表 (Task Scheduler)」建立一個任務</p><p>使用者設定 rclone
+<img alt=dsm-task-1 src=/posts/rclone-pcloud-backup/dsm-task-1.png></p><p>指令欄位輸入 docker-compose up 指令來執行我們上面步驟寫好的 yaml，範例如下：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-sh data-lang=sh><span style=display:flex><span>docker-compose -f /path/to/your/docker-compose.yml up
+</span></span></code></pre></div><p><img alt=dsm-task-2 src=/posts/rclone-pcloud-backup/dsm-task-2.png></p><p>設定好排程時間後就大功告成了，現在你的 NAS 已經實現了一個端對端加密的雲端異地備份服務</p></div><div class="row pl-3 pr-3"><div class="col-md-6 share-buttons"><strong>分享:</strong>
+<a class="btn icon-button bg-facebook" href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fjay16213.github.io%2fposts%2frclone-pcloud-backup%2f" target=_blank><i class="fab fa-facebook"></i>
+</a><a class="btn icon-button bg-twitter" href="https://twitter.com/share?url=https%3a%2f%2fjay16213.github.io%2fposts%2frclone-pcloud-backup%2f&text=%e5%9c%a8%20Synology%20NAS%20%e4%b8%8a%e7%94%a8%20rclone%20%2b%20pCloud%20%e5%bb%ba%e7%ab%8b%e5%8a%a0%e5%af%86%e9%9b%b2%e7%ab%af%e5%82%99%e4%bb%bd&via=Jay%27s%20Blog" target=_blank><i class="fab fa-twitter"></i>
+</a><a class="btn icon-button bg-reddit" href="https://reddit.com/submit?url=https%3a%2f%2fjay16213.github.io%2fposts%2frclone-pcloud-backup%2f&title=%e5%9c%a8%20Synology%20NAS%20%e4%b8%8a%e7%94%a8%20rclone%20%2b%20pCloud%20%e5%bb%ba%e7%ab%8b%e5%8a%a0%e5%af%86%e9%9b%b2%e7%ab%af%e5%82%99%e4%bb%bd" target=_blank><i class="fab fa-reddit"></i>
+</a><a class="btn icon-button bg-linkedin" href="https://www.linkedin.com/shareArticle?url=https%3a%2f%2fjay16213.github.io%2fposts%2frclone-pcloud-backup%2f&title=%e5%9c%a8%20Synology%20NAS%20%e4%b8%8a%e7%94%a8%20rclone%20%2b%20pCloud%20%e5%bb%ba%e7%ab%8b%e5%8a%a0%e5%af%86%e9%9b%b2%e7%ab%af%e5%82%99%e4%bb%bd" target=_blank><i class="fab fa-linkedin"></i>
+</a><a class="btn icon-button" href="mailto:?subject=%e5%9c%a8%20Synology%20NAS%20%e4%b8%8a%e7%94%a8%20rclone%20%2b%20pCloud%20%e5%bb%ba%e7%ab%8b%e5%8a%a0%e5%af%86%e9%9b%b2%e7%ab%af%e5%82%99%e4%bb%bd&body=https%3a%2f%2fjay16213.github.io%2fposts%2frclone-pcloud-backup%2f" target=_blank><i class="fas fa-envelope-open-text"></i></a></div></div><hr><div class="row next-prev-navigator"><div class="col-md-6 previous-article"><a href=/posts/run-docker-command-without-sudo-on-synology-nas/ title="如何在 Synology NAS 使用 non-root user 執行 Docker command" class="btn filled-button"><div><i class="fas fa-chevron-circle-left"></i> 上一篇</div><div class=next-prev-text>如何在 Synology NAS 使用 non-root user 執行 Docker command</div></a></div><div class="col-md-6 next-article"><a href=/posts/leetcode/leetcode-139/ title="Leetcode 隨筆 - 139. Word Break" class="btn filled-button"><div>下一篇 <i class="fas fa-chevron-circle-right"></i></div><div class=next-prev-text>Leetcode 隨筆 - 139. Word Break</div></a></div></div><hr><div id=disqus_thread></div><script type=text/javascript>(function(){if(window.location.hostname=="localhost")return;var t,e=document.createElement("script");e.type="text/javascript",e.async=!0,t="jay-blog-1",e.src="//"+t+".disqus.com/embed.js",(document.getElementsByTagName("head")[0]||document.getElementsByTagName("body")[0]).appendChild(e)})()</script><noscript>請開啟 JavaScript 查看
+<a href=https://disqus.com/?ref_noscript>評論由 Disqus.</a></noscript><a href=https://disqus.com/ class=dsq-brlink>評論由 <span class=logo-disqus>Disqus</span></a></div></div></div><a id=scroll-to-top class=btn data-toggle=tooltip data-placement=left title="Scroll to top"><i class="fas fa-chevron-circle-up"></i></a></section><section class=toc-section id=toc-section><div class=toc-holder><h5 class="text-center pl-3">目錄</h5><hr><div class=toc><nav id=TableOfContents><ul><li><a href=#前言>前言</a></li><li><a href=#安裝-rclone>安裝 rclone</a></li><li><a href=#設定-rclone-remote-for-pcloud>設定 rclone remote for pCloud</a></li><li><a href=#設定-rclone-crypt-remote-pcloud>設定 rclone crypt remote pcloud</a></li><li><a href=#使用-docker-compose-執行備份>使用 Docker Compose 執行備份</a><ul><li><ul><li><a href=#設定排除檔案>設定排除檔案</a></li><li><a href=#設定-logrotate>設定 logrotate</a></li></ul></li><li><a href=#測試>測試</a></li></ul></li><li><a href=#透過-dsm-自動化排程備份>透過 DSM 自動化排程備份</a><ul><li><a href=#建立-rclone-user>建立 rclone user</a></li><li><a href=#新增-dsm-排程任務>新增 DSM 排程任務</a></li></ul></li></ul></nav></div></div></section></div><footer id=footer class="container-fluid text-center align-content-center footer pb-2"><div class="container pt-5"><div class="row text-left"><div class="col-md-4 col-sm-12"><h5>導覽列</h5><ul><li class=nav-item><a class=smooth-scroll href=https://jay16213.github.io/#about>關於</a></li><li class=nav-item><a class=smooth-scroll href=https://jay16213.github.io/#recent-posts>最近文章</a></li></ul></div><div class="col-md-4 col-sm-12"><h5>聯絡方式:</h5><ul><li><a href=mailto:jay101630@gmail.com target=_blank rel=noopener><span><i class="fas fa-envelope"></i></span> <span>jay101630@gmail.com</span></a></li></ul></div></div></div><hr><div class=container><div class="row text-left"><div class=col-md-4><a id=theme href=https://github.com/hugo-toha/toha target=_blank rel=noopener><img src=/images/theme-logo_hu8376fd15465fef26ffe66b6bcf0ca686_13669_32x0_resize_box_3.png alt="Toha Theme Logo">
+Toha</a></div><div class="col-md-4 text-center">Copyright © 2022 Jay&rsquo;s Blog. All right reserved.</div><div class="col-md-4 text-right"><a id=hugo href=https://gohugo.io/ target=_blank rel=noopener>Powered by
+<img src=/images/hugo-logo.svg alt="Hugo Logo" height=18></a></div></div></div></footer><script src=/application.3a83796c45aa80d78f03a42b695ed8e2d598e685387f0c93392552efe1d98f50.js integrity="sha256-OoN5bEWqgNePA6QraV7Y4tWY5oU4fwyTOSVS7+HZj1A=" defer></script></body></html>
